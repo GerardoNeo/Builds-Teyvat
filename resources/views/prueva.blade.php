@@ -34,8 +34,15 @@
             <div class="equipment-content">
                 <div class="equipment">
                     <div class="equip">
-                        <div></div>
-                        <div></div>
+                        <div class="title">
+                            <h1>Armas recomendadas</h1>
+                        </div>
+                        <div class="equip-img" id="1">
+                            <div class="weapon-img"></div>
+                            <div class="weapon-name">
+                                <h1>Baculo de homa</h1>
+                            </div>
+                        </div>
                         <div class="button-content">
                             <div class="btn-back">
                                 <i class='bx bx-left-arrow-alt'></i>
@@ -49,8 +56,12 @@
                         </div>
                     </div>
                     <div class="equip">
-                        <div></div>
-                        <div></div>
+                        <div class="title">
+                            <h1>Sets recomendados</h1>
+                        </div>
+                        <div class="equip-img" id="2">
+
+                        </div>
                         <div class="button-content">
                             <div class="btn-back">
                                 <i class='bx bx-left-arrow-alt'></i>
@@ -68,4 +79,5 @@
         </div>
     </div>
 </body>
+<script src="{{  asset('js/principal.js') }}"></script>
 </html>
