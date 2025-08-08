@@ -5,12 +5,29 @@ op.forEach((btn) => {
     const id = e.currentTarget.id;
     console.log("Click en imagen con ID:", id);
 
-    // Evitar múltiples popups
     if (!document.querySelector('.popup-info')) {
         document.body.insertAdjacentHTML('beforeend', `
         <div class="popup-info">
             <div class="info-content">
                 <h1 class="close-popup">X</h1>
+                <div class="info-pop">
+                  <div class="popup-row1">
+                    <div class="row-img">
+                    
+                    </div>
+                    <div class="row-info">
+                      
+                    </div>
+                  </div>
+                  <div class="popup-row2">
+                    <div class="popup-colum1">
+                    
+                    </div>
+                    <div class="popup-colum2">
+                    
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
         `);
@@ -21,7 +38,7 @@ op.forEach((btn) => {
 
 document.addEventListener('click', function (e) {
   if (e.target.matches(".close-popup")) {
-    e.target.closest(".popup-info").remove(); // más seguro que querySelector
+    e.target.closest(".popup-info").remove();
   }
 });
 
