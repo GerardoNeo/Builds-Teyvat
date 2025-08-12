@@ -39,3 +39,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
         print.appendChild(div);
     }
 })
+
+let filtro = document.querySelector(".search");
+
+filtro.addEventListener("input", ()=>{
+    let pjs = document.querySelectorAll(".pj");
+
+    pjs.forEach(pj =>{
+        if(pj.querySelector("h1").textContent.toLowerCase().includes(filtro.value.toLowerCase())){
+            pj.style.display = "flex";
+        }else{
+            pj.style.display = "none";
+        }
+    })
+})
