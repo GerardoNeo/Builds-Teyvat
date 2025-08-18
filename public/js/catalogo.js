@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     for(i = 0; i < list.length; i++){
         let div = document.createElement("div")
         div.classList.add("element");
-        div.innerHTML = `<h1>${list[i]}</h1>`;
+        div.innerHTML = `<p>${list[i]}</p>`;
 
         print.appendChild(div);
     }
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     for(i = 0; i < list.length; i++){
         let div = document.createElement("div")
         div.classList.add("element");
-        div.innerHTML = `<h1>${list[i]}</h1>`;
+        div.innerHTML = `<p>${list[i]}</p>`;
 
         print.appendChild(div);
     }
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         div.classList.add("pj");
         div.innerHTML = `
         <div class="font"></div>
-        <h1>${list[i]}</h1>`;
+        <p>${list[i]}</p>`;
 
         print.appendChild(div);
     }
@@ -46,10 +46,19 @@ filtro.addEventListener("input", ()=>{
     let pjs = document.querySelectorAll(".pj");
 
     pjs.forEach(pj =>{
-        if(pj.querySelector("h1").textContent.toLowerCase().includes(filtro.value.toLowerCase())){
+        if(pj.querySelector("p").textContent.toLowerCase().includes(filtro.value.toLowerCase())){
             pj.style.display = "flex";
         }else{
             pj.style.display = "none";
         }
     })
 })
+let id = 1
+//redireccion provicional
+document.querySelector(".cat-row2").addEventListener("click", (e) => {
+    //const pjDiv = e.target.closest(".pj");
+
+    if (e.target.closest(".pj")) {
+        window.location.href = `/infoPersonaje${id}`;
+    }
+});

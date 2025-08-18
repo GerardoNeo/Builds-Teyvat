@@ -42,5 +42,9 @@ document.addEventListener('click', function (e) {
   }
 });
 
+document.querySelector(".btn-back-pag").addEventListener("click", ()=>{
+  window.location.href = "/catalogo"
+});
+
 
 

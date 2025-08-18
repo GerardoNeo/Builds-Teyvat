@@ -30,7 +30,6 @@
             <div class="catalogo">
                 <div class="cat-row1">
                     <input type="text" class="search">
-                    <div class="btn-search"></div>
                 </div>
                 <div class="cat-row2"></div>
             </div>
