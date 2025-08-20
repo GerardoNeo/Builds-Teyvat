@@ -8,72 +8,45 @@
     <title>principal</title>
 </head>
 <body>
-    <div class="head"></div>
+    <div class="head">
+        <p>Builts Teyvat</p>
+    </div>
     <div class="content">
-        <div class="content-left">
-            <div class="info">
-                <div class="info-row1">
-                    <div class="btn-back-pag">
-                        <h1>Back</h1>
-                    </div>
-                </div>
-                <div class="info-row2">
-                    <div class="info-img"></div>
-                    <div class="info-text">
-                    </div>
-                </div>
-                <div class="info-row3"></div>
-            </div>
-        </div>
-        <div class="content-right">
-            <div class="vote-content">
-                <div class="vote">
-
-                </div>
-            </div>
-            <div class="equipment-content">
-                <div class="equipment">
-                    <div class="equip">
-                        <div class="title">
-                            <h1>Armas recomendadas</h1>
-                        </div>
-                        <div class="equip-img" id="1">
-                            <div class="weapon-img"></div>
-                            <div class="weapon-name">
-                                <h1>Baculo de homa</h1>
-                            </div>
-                        </div>
-                        <div class="button-content">
-                            <div class="btn-back">
-                                <i class='bx bx-left-arrow-alt'></i>
-                            </div>
-                            <div class="btn-better">
-                                <i class='bx bxs-star'></i>
-                            </div>
-                            <div class="btn-next">
-                                <i class='bx bx-right-arrow-alt'></i>
-                            </div>
+        <div class="info-content">
+            <div class="info-column1">
+                <div class="row-column">
+                    <div class="back-row">
+                        <div class="btn-back">
+                            <p>Back</p>
                         </div>
                     </div>
-                    <div class="equip">
-                        <div class="title">
-                            <h1>Sets recomendados</h1>
-                        </div>
-                        <div class="equip-img" id="2">
+                    <div class="info-row">
+                        <div class="pj-row">
 
                         </div>
-                        <div class="button-content">
-                            <div class="btn-back">
-                                <i class='bx bx-left-arrow-alt'></i>
+                        <div class="pj-info-row">
+                            <div class="text-content">
+                                <p>Información del personaje</p>
+                                <div class="line"></div>
                             </div>
-                            <div class="btn-better">
-                                <i class='bx bxs-star'></i>
-                            </div>
-                            <div class="btn-next">
-                                <i class='bx bx-right-arrow-alt'></i>
+                            <div class="pj-info"></div>
+                            <div class="btn-more">
+                                <p>Ver mas...</p>
                             </div>
                         </div>
                     </div>
+                    <div class="coment-row"></div>
+                </div>
+            </div>
+            <div class="info-column2">
+                <div class="voto-content">
+                    <div class="voto-cuadro">
+
+                    </div>
+                </div>
+                <div class="weapon-column">
+                    <div class="item"></div>
+                    <div class="item"></div>
                 </div>
             </div>
         </div>

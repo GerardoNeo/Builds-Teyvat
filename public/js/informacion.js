@@ -42,7 +42,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-document.querySelector(".btn-back-pag").addEventListener("click", ()=>{
+document.querySelector(".btn-back").addEventListener("click", ()=>{
   window.location.href = "/catalogo"
 });
 

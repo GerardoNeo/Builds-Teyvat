@@ -1,15 +1,28 @@
 @import url('main.css');
 @import "colores.css";
 
-body{
-    height: 100vh;
+body {
+    height: 100dvh;
     padding: 0;
     margin: 0;
+    background-image: url("/img/liyue2.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 10%;
-    background-color: var(--color_head);
+    height: 10vh;
+    background-color: rgba(var(--color_head), .45);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.head p{
+    margin: 0;
+    padding: 0;
+    font-size: 150%;
+    color: var(--blanco_letra);
 }
