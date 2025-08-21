@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", ()=>{
-    let print = document.querySelector(".elements");
+    let print = document.querySelector("#element");
     let list = ["Anemo","Cryo","Geo","Pyro","Dendro","Hydro","Electro"]
     let i
     for(i = 0; i < list.length; i++){
         let div = document.createElement("div")
-        div.classList.add("element");
+        div.classList.add("item");
         div.innerHTML = `<p>${list[i]}</p>`;
 
         print.appendChild(div);
@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
 })
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    let print = document.querySelector(".weapons");
+    let print = document.querySelector("#weapon");
     let list = ["Mandoble","Arco","Lanza","Espada l","Catalizador"]
     let i
     for(i = 0; i < list.length; i++){
         let div = document.createElement("div")
-        div.classList.add("element");
+        div.classList.add("item");
         div.innerHTML = `<p>${list[i]}</p>`;
 
         print.appendChild(div);

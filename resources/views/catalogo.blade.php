@@ -13,27 +13,35 @@
         <p>Builts Teyvat</p>
     </header>
     <div class="content">
-        <div class="column">
-            <div class="filters">
-                <div class="filter-column">
-                    <h1>Elemento</h1>
-                    <div class="line"></div>
-                    <div class="elements">
+        <div class="column-content">
+            <div class="column-filt">
+                <div class="filt-content">
+                    <div class="filter">
+                        <div class="content-text">
+                            <p>Elemento</p>
+                            <div class="line"></div>
+                        </div>
+                        <div class="elementos" id="element"></div>
+                    </div>
+                    <div class="filter">
+                        <div class="content-text">
+                            <p>Arma</p>
+                            <div class="line"></div>
+                        </div>
+                        <div class="elementos" id="weapon"></div>
                     </div>
                 </div>
-                <div class="filter-column">
-                    <h1>Arma</h1>
-                    <div class="line"></div>
-                    <div class="weapons"></div>
-                </div>
             </div>
-        </div>
-        <div class="catalogo-content">
-            <div class="catalogo">
-                <div class="cat-row1">
+            <div class="column-catalogo">
+                <div class="search-content">
                     <input type="text" class="search">
+                    <i class='bx bx-search'></i>
                 </div>
-                <div class="cat-row2"></div>
+                <div class="catalogo-content">
+                    <div class="catalogo">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
