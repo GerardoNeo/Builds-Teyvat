@@ -9,7 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="head"></div>
+    <header>
+        <p>Builts Teyvat</p>
+    </header>
     <div class="content">
         <div class="column">
             <div class="filters">

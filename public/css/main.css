@@ -5,12 +5,9 @@ body {
     height: 100dvh;
     padding: 0;
     margin: 0;
-    background-image: url("/img/liyue2.jpg");
-    background-size: cover;
-    background-position: center;
 }
 
-.head{
+header{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +17,7 @@ body {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.head p{
+header p{
     margin: 0;
     padding: 0;
     font-size: 150%;

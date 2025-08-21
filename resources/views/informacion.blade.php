@@ -8,9 +8,9 @@
     <title>principal</title>
 </head>
 <body>
-    <div class="head">
+    <header>
         <p>Builts Teyvat</p>
-    </div>
+    </header>
     <div class="content">
         <div class="info-content">
             <div class="info-column1">
@@ -25,13 +25,15 @@
 
                         </div>
                         <div class="pj-info-row">
-                            <div class="text-content">
-                                <p>Información del personaje</p>
-                                <div class="line"></div>
-                            </div>
-                            <div class="pj-info"></div>
-                            <div class="btn-more">
-                                <p>Ver mas...</p>
+                            <div class="info-pj-content">
+                                <div class="text-content">
+                                    <p>Información del personaje</p>
+                                    <div class="line"></div>
+                                </div>
+                                <div class="pj-info"></div>
+                                <div class="btn-more">
+                                    <p>Ver mas...</p>
+                                </div>
                             </div>
                         </div>
                     </div>
