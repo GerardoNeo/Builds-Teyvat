@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 })
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    let print = document.querySelector(".cat-row2");
+    let print = document.querySelector(".list-pj");
     let list = ["Furina","Hu tao","Scoffier","Citlali","Bennet","Yoimiya","Xiangling","Tartaglia","Charlote","Neuvillete",
         "Mavuika","Iansan","Varesa","Shenhe","Yelan"]
     let i
@@ -55,7 +55,7 @@ filtro.addEventListener("input", ()=>{
 })
 let id = 1
 //redireccion provicional
-document.querySelector(".cat-row2").addEventListener("click", (e) => {
+document.querySelector(".list-pj").addEventListener("click", (e) => {
     //const pjDiv = e.target.closest(".pj");
 
     if (e.target.closest(".pj")) {

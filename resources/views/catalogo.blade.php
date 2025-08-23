@@ -34,12 +34,14 @@
             </div>
             <div class="column-catalogo">
                 <div class="search-content">
-                    <input type="text" class="search">
-                    <i class='bx bx-search'></i>
+                    <input type="text" class="search" placeholder="Buscar...">
+                    <div class="icon-content">
+                        <i class='bx bx-search'></i>
+                    </div>
                 </div>
                 <div class="catalogo-content">
                     <div class="catalogo">
-
+                        <div class="list-pj"></div>
                     </div>
                 </div>
             </div>

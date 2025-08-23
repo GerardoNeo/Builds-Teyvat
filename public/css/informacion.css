@@ -191,7 +191,7 @@ body{
     align-items: center;
     height: 100%;
     width: 10%;
-    background-color: rgba(var(--color_head), .3);
+    background-color: rgba(var(--color_head), .6);
     cursor: pointer;
     border-radius: 10px;
     transition: .5s;
@@ -199,7 +199,7 @@ body{
 
 .btn-back:hover{
     transform: translateY(-3px);
-    background-color: rgba(var(--color_head), .6);
+    background-color: rgba(var(--color_head), .2);
 }
 
 .back-row p{

@@ -89,14 +89,14 @@ body{
     align-items: center;
     width: 100%;
     height: 10%;
-    background-color: rgba(var(--color_head), .45);
+    background-color: rgba(var(--color_head), .6);
     cursor: pointer;
     border-radius: 10px;
     transition: .5s;
 }
 
 .item:hover{
-    background-color: rgba(var(--color_head), .3);
+    background-color: rgba(var(--color_head), .15);
 }
 
 .item p{
@@ -111,9 +111,100 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: .5em;
     width: 75%;
     height: 100%;
     background-color: rgba(var(--color_head), .3);
     border-radius: 10px;
 }
+
+.search-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 6%;
+}
+
+.search-content input{
+    width: 88%;
+    height: 70%;
+    border-radius: 10px 0px 0px 10px;
+    background-color: rgb(var(--blanco_letra));
+    font-size: 100%;
+    padding: 0;
+    border: none;
+}
+
+.search-content input:focus{
+    outline: none;
+}
+
+.icon-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    height: 70%;
+    font-size: 200%;
+    background-color: rgb(var(--blanco_letra));
+    border-radius: 0px 10px 10px 0px;
+}
+
+.bx-search{
+    color: rgb(var(--color_gris_oscuro));
+}
+
+.catalogo-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 93%;
+    height: 85%;
+}
+
+.catalogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 95%;
+    background-color: rgba(var(--color_head), .6);
+    border-radius: 10px;
+}
+
+.list-pj{
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    justify-items: center;
+    gap: 1em;
+    overflow-y: auto;
+    width: 95%;
+    height: 90%;
+}
+
+.pj{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    background-color: aliceblue;
+}
+
+.font{
+    width: 80%;
+    height: 80%;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.pj p{
+    margin: 0;
+}
+
+
 
