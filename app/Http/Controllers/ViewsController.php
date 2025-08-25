@@ -16,4 +16,8 @@ class ViewsController extends Controller
     function perfil(){
         return view('perfil');
     }
+
+    function login(){
+        return view('login');
+    }
 }
