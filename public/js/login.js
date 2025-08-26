@@ -7,6 +7,8 @@ document.querySelector(".btn-login").addEventListener("click", ()=>{
 
     if(inf.correo != "" && inf.pass1 != "" && inf.pass2 != ""){
         console.log(inf);
+        //^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+        window.location.href = "/catalogo"
     }else{
         console.log("chinga tu madre")
     }

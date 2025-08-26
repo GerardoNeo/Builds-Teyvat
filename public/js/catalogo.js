@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         print.appendChild(div);
     }
 })
-
+/*
 document.addEventListener("DOMContentLoaded", ()=>{
     let print = document.querySelector(".list-pj");
     let list = ["Furina","Hu tao","Scoffier","Citlali","Bennet","Yoimiya","Xiangling","Tartaglia","Charlote","Neuvillete",
@@ -38,6 +38,37 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         print.appendChild(div);
     }
+})
+*/
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    let print = document.querySelector(".list-pj");
+    /*let list = ["Furina","Hu tao","Scoffier","Citlali","Bennet","Yoimiya","Xiangling","Tartaglia","Charlote","Neuvillete",
+        "Mavuika","Iansan","Varesa","Shenhe","Yelan"]
+    let i
+    for(i = 0; i < list.length; i++){
+        let div = document.createElement("div")
+        div.classList.add("pj");
+        div.innerHTML = `
+        <div class="font"></div>
+        <p>${list[i]}</p>`;
+
+        print.appendChild(div);
+    }*/
+    fetch("/catalogo/list")
+    .then(data => data.json())
+    .then(data =>{
+        //console.log(data)
+        data.forEach(pj =>{
+            let div = document.createElement("div")
+            div.classList.add("pj");
+            div.innerHTML = `
+            <div class="font"></div>
+            <p>${pj.nombre}</p>`;
+
+            print.appendChild(div);
+        })
+    })
 })
 
 let filtro = document.querySelector(".search");
