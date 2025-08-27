@@ -28,12 +28,13 @@ document.querySelectorAll(".item").forEach(item =>{
             let idElemento = pj.querySelector(".font-content").id;
             let idArma = pj.querySelector(".nombre-content").id;
 
-            let mostrar =
-                ((listFil.length === 0 || listFil.includes(idElemento)) &&
+            if(((listFil.length === 0 || listFil.includes(idElemento)) &&
                 (listArma.length === 0 || listArma.includes(idArma))) && 
-                pj.querySelector("p").textContent.toLowerCase().includes(search.value.toLowerCase());
-
-            pj.style.display = mostrar ? "flex" : "none";
+                pj.querySelector("p").textContent.toLowerCase().includes(search.value.toLowerCase())){
+                pj.style.display = "flex";
+            }else{
+                pj.style.display = "none";
+            }
         });
         console.log(listFil)
         console.log(listArma)
@@ -50,7 +51,22 @@ document.addEventListener("DOMContentLoaded", ()=>{
             let div = document.createElement("div")
             div.classList.add("pj");
             div.id = pj.id_personaje;
-            div.innerHTML = `
+            if(pj.nombre.length >= 10){
+                let partes = pj.nombre.split(" ");
+                div.innerHTML = `
+                <div class="font-content"  id="${pj.nombre_ele}">
+                    <div class="font-${pj.nombre_ele.toLowerCase()}">
+                        <img src="${pj.poster_url}">
+                    </div>
+                </div>
+                <div class="nombre-content" id="${pj.nombre_tp}">
+                    <div class="nombre-pj">
+                        <p>${partes[1] + "..."}</p>
+                    </div>
+                </div>
+                `;
+            }else{
+                div.innerHTML = `
                 <div class="font-content"  id="${pj.nombre_ele}">
                     <div class="font-${pj.nombre_ele.toLowerCase()}">
                         <img src="${pj.poster_url}">
@@ -62,6 +78,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                     </div>
                 </div>
                 `;
+            }
             
             print.appendChild(div);
         })
@@ -76,12 +93,13 @@ search.addEventListener("input", ()=>{
         let idElemento = pj.querySelector(".font-content").id;
         let idArma = pj.querySelector(".nombre-content").id;
 
-        let mostrar =
-            ((listFil.length === 0 || listFil.includes(idElemento)) &&
+        if(((listFil.length === 0 || listFil.includes(idElemento)) &&
             (listArma.length === 0 || listArma.includes(idArma))) && 
-            pj.querySelector("p").textContent.toLowerCase().includes(search.value.toLowerCase());
-
-        pj.style.display = mostrar ? "flex" : "none";
+            pj.querySelector("p").textContent.toLowerCase().includes(search.value.toLowerCase())){
+            pj.style.display = "flex";
+        }else{
+            pj.style.display = "none";
+        }
     });
 })
 //redireccion provicional
