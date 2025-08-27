@@ -89,15 +89,23 @@ body{
     align-items: center;
     width: 100%;
     height: 10%;
-    background-color: rgba(var(--color_head), .6);
+    background-color: rgba(var(--color_gris_oscuro), .6);
     cursor: pointer;
     border-radius: 10px;
     transition: .5s;
 }
 
 .item:hover{
-    background-color: rgba(var(--color_head), .15);
+    background-color: rgba(var(--color_gris_oscuro), .35);
 }
+
+.activo{
+    background-color: rgba(var(--color_gris_oscuro), .35);
+}
+
+/*.item.activo:hover{
+    background-color: rgba(var(--color_gris_oscuro), .6);
+}*/
 
 .item p{
     margin: 0;
@@ -186,24 +194,92 @@ body{
 .pj{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     border-radius: 10px;
     width: 150px;
     height: 200px;
-    background-color: aliceblue;
+    border: 2px solid rgb(var(--blanco_letra), .5);
+    background-color: rgb(var(--color_head), .4);
+    transition: .5s;
 }
 
-.font{
-    width: 80%;
-    height: 80%;
-    background-color: black;
+.font-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+}
+
+.nombre-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+}
+
+.nombre-pj{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 60%;
     border-radius: 10px;
+    background-color: rgb(var(--color_gris_oscuro), .6);
 }
 
 .pj p{
     margin: 0;
+    color: rgb(var(--blanco_letra));
+}
+
+img{
+    width: 100%;
+}
+
+
+.pj:hover{
+    /*transform: scale(1.015);*/
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.6);
+}
+
+.font-anemo, .font-geo, .font-electro, .font-dendro, .font-hydro, .font-pyro, .font-cryo{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border: 2px solid rgb(var(--blanco_letra));
+    width: 70%;
+    height: 75%;
+    border-radius: 10px;
+}
+
+.font-anemo{
+    background-color: rgba(var(--anemo));
+}
+
+.font-geo{
+    background-color: rgb(var(--geo));
+}
+
+.font-electro{
+    background-color: rgb(var(--electro));
+}
+
+.font-dendro{
+    background-color: rgb(var(--dendro));
+}
+
+.font-hydro{
+    background-color: rgb(var(--hydro));
+}
+
+.font-pyro{
+    background-color: rgba(var(--pyro));
+}
+
+.font-cryo{
+    background-color: rgb(var(--cryo));
 }
 
 

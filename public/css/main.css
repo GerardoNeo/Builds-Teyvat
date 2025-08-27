@@ -25,7 +25,7 @@ header p{
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(var(--color_gris_claro));
+  background: rgb(var(--blanco_letra));
   border-radius: 10px;
 }
 
@@ -36,7 +36,7 @@ header p{
 ::-webkit-scrollbar-thumb {
   background: #4E4E4E;
   border-radius: 10px;
-  border: 3px solid rgb(var(--color_gris_claro));   
+  border: 3px solid rgb(var(--blanco_letra));   
   transition: 0.5s ease;
 }
 

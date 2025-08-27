@@ -22,7 +22,9 @@
                     </div>
                     <div class="info-row">
                         <div class="pj-row">
-
+                            <div class="pj-pyro">
+                                <img src="/img/Ganyu_banner.webp" alt="">
+                            </div>
                         </div>
                         <div class="pj-info-row">
                             <div class="info-pj-content">

@@ -6,4 +6,13 @@
     --color_gris_oscuro: 184, 184, 184;
     --rojo_pyro: #FF4A4A;
     --blanco_letra: 256, 256, 256;
+
+    /*colores elementos*/
+    --pyro: 255, 75, 75;      /* 🔥 Pyro */
+    --hydro: 0, 207, 255;     /* 💧 Hydro */
+    --electro: 192, 112, 255; /* ⚡ Electro */
+    --cryo: 160, 233, 255;    /* ❄️ Cryo */
+    --anemo: 58, 255, 181;    /* 🌿 Anemo */
+    --geo: 255, 184, 76;      /* ⛰️ Geo */
+    --dendro: 159, 239, 0;    /* 🍃 Dendro */
 }

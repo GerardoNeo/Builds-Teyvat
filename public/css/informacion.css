@@ -109,10 +109,27 @@ body{
 }
 
 .pj-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 70%;
     height: 100%;
     background-color: rgba(var(--color_head), .3);
     border-radius: 10px;
+}
+
+.pj-pyro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 90%;
+    border-radius: 10px;
+    background-color: rgb(var(--cryo),.6);
+}
+
+.pj-pyro img{
+    width: 180%;
 }
 
 .info-pj-content{

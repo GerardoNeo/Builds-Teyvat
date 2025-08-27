@@ -1,93 +1,92 @@
-document.addEventListener("DOMContentLoaded", ()=>{
-    let print = document.querySelector("#element");
-    let list = ["Anemo","Cryo","Geo","Pyro","Dendro","Hydro","Electro"]
-    let i
-    for(i = 0; i < list.length; i++){
-        let div = document.createElement("div")
-        div.classList.add("item");
-        div.innerHTML = `<p>${list[i]}</p>`;
+let listFil = [];
+let listArma = [];
+let element = ['Anemo', 'Geo', 'Electro', 'Dendro', 'Hydro', 'Pyro', 'Cryo']
+let weapon = ['Espada ligera', 'Arco', 'Lanza', 'Mandoble', 'Catalizador']
 
-        print.appendChild(div);
-    }
-})
+document.querySelectorAll(".item").forEach(item =>{
+    item.addEventListener("click", () => {
+        let pjs = document.querySelectorAll(".pj");
+        let filtro = item.querySelector("p").textContent;
+        console.log("click")
+        if (item.classList.contains("activo")) {
+            item.classList.remove("activo");
+            if (element.includes(filtro)) {
+                listFil = listFil.filter(f => f !== filtro);
+            } else if (weapon.includes(filtro)) {
+                listArma = listArma.filter(f => f !== filtro);
+            }
+        } else {
+            item.classList.add("activo");
+            if (element.includes(filtro)) {
+                listFil.push(filtro);
+            } else if (weapon.includes(filtro)) {
+                listArma.push(filtro);
+            }
+        }
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    let print = document.querySelector("#weapon");
-    let list = ["Mandoble","Arco","Lanza","Espada l","Catalizador"]
-    let i
-    for(i = 0; i < list.length; i++){
-        let div = document.createElement("div")
-        div.classList.add("item");
-        div.innerHTML = `<p>${list[i]}</p>`;
+        pjs.forEach(pj => {
+            let idElemento = pj.querySelector(".font-content").id;
+            let idArma = pj.querySelector(".nombre-content").id;
 
-        print.appendChild(div);
-    }
-})
-/*
+            let mostrar =
+                ((listFil.length === 0 || listFil.includes(idElemento)) &&
+                (listArma.length === 0 || listArma.includes(idArma))) && 
+                pj.querySelector("p").textContent.toLowerCase().includes(search.value.toLowerCase());
+
+            pj.style.display = mostrar ? "flex" : "none";
+        });
+        console.log(listFil)
+        console.log(listArma)
+    })
+});
+
 document.addEventListener("DOMContentLoaded", ()=>{
     let print = document.querySelector(".list-pj");
-    let list = ["Furina","Hu tao","Scoffier","Citlali","Bennet","Yoimiya","Xiangling","Tartaglia","Charlote","Neuvillete",
-        "Mavuika","Iansan","Varesa","Shenhe","Yelan"]
-    let i
-    for(i = 0; i < list.length; i++){
-        let div = document.createElement("div")
-        div.classList.add("pj");
-        div.innerHTML = `
-        <div class="font"></div>
-        <p>${list[i]}</p>`;
-
-        print.appendChild(div);
-    }
-})
-*/
-
-document.addEventListener("DOMContentLoaded", ()=>{
-    let print = document.querySelector(".list-pj");
-    /*let list = ["Furina","Hu tao","Scoffier","Citlali","Bennet","Yoimiya","Xiangling","Tartaglia","Charlote","Neuvillete",
-        "Mavuika","Iansan","Varesa","Shenhe","Yelan"]
-    let i
-    for(i = 0; i < list.length; i++){
-        let div = document.createElement("div")
-        div.classList.add("pj");
-        div.innerHTML = `
-        <div class="font"></div>
-        <p>${list[i]}</p>`;
-
-        print.appendChild(div);
-    }*/
     fetch("/catalogo/list")
     .then(data => data.json())
     .then(data =>{
-        //console.log(data)
+        console.log(data)
         data.forEach(pj =>{
             let div = document.createElement("div")
             div.classList.add("pj");
+            div.id = pj.id_personaje;
             div.innerHTML = `
-            <div class="font"></div>
-            <p>${pj.nombre}</p>`;
-
+                <div class="font-content"  id="${pj.nombre_ele}">
+                    <div class="font-${pj.nombre_ele.toLowerCase()}">
+                        <img src="${pj.poster_url}">
+                    </div>
+                </div>
+                <div class="nombre-content" id="${pj.nombre_tp}">
+                    <div class="nombre-pj">
+                        <p>${pj.nombre}</p>
+                    </div>
+                </div>
+                `;
+            
             print.appendChild(div);
         })
     })
 })
 
-let filtro = document.querySelector(".search");
+let search = document.querySelector(".search");
 
-filtro.addEventListener("input", ()=>{
+search.addEventListener("input", ()=>{
     let pjs = document.querySelectorAll(".pj");
+    pjs.forEach(pj => {
+        let idElemento = pj.querySelector(".font-content").id;
+        let idArma = pj.querySelector(".nombre-content").id;
 
-    pjs.forEach(pj =>{
-        if(pj.querySelector("p").textContent.toLowerCase().includes(filtro.value.toLowerCase())){
-            pj.style.display = "flex";
-        }else{
-            pj.style.display = "none";
-        }
-    })
+        let mostrar =
+            ((listFil.length === 0 || listFil.includes(idElemento)) &&
+            (listArma.length === 0 || listArma.includes(idArma))) && 
+            pj.querySelector("p").textContent.toLowerCase().includes(search.value.toLowerCase());
+
+        pj.style.display = mostrar ? "flex" : "none";
+    });
 })
-let id = 1
 //redireccion provicional
 document.querySelector(".list-pj").addEventListener("click", (e) => {
-    //const pjDiv = e.target.closest(".pj");
+    let id = e.target.closest(".pj").id;
 
     if (e.target.closest(".pj")) {
         window.location.href = `/infoPersonaje${id}`;

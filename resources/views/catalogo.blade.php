@@ -21,14 +21,52 @@
                             <p>Elemento</p>
                             <div class="line"></div>
                         </div>
-                        <div class="elementos" id="element"></div>
+                        <div class="elementos" id="element">
+                            <div class="item">
+                                <p>Anemo</p>
+                            </div>
+                            <div class="item">
+                                <p>Geo</p>
+                            </div>
+                            <div class="item">
+                                <p>Electro</p>
+                            </div>
+                            <div class="item">
+                                <p>Dendro</p>
+                            </div>
+                            <div class="item">
+                                <p>Hydro</p>
+                            </div>
+                            <div class="item">
+                                <p>Pyro</p>
+                            </div>
+                            <div class="item">
+                                <p>Cryo</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="filter">
                         <div class="content-text">
                             <p>Arma</p>
                             <div class="line"></div>
                         </div>
-                        <div class="elementos" id="weapon"></div>
+                        <div class="elementos" id="weapon">
+                            <div class="item">
+                                <p>Espada ligera</p>
+                            </div>
+                            <div class="item">
+                                <p>Mandoble</p>
+                            </div>
+                            <div class="item">
+                                <p>Arco</p>
+                            </div>
+                            <div class="item">
+                                <p>Lanza</p>
+                            </div>
+                            <div class="item">
+                                <p>Catalizador</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,7 +79,9 @@
                 </div>
                 <div class="catalogo-content">
                     <div class="catalogo">
-                        <div class="list-pj"></div>
+                        <div class="list-pj">
+                            
+                        </div>
                     </div>
                 </div>
             </div>
