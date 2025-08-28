@@ -1,3 +1,8 @@
+let token
+document.addEventListener("DOMContentLoaded", () =>{
+  token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  console.log(token)
+})
 let op = document.querySelectorAll(".equip-img");
 
 op.forEach((btn) => {
@@ -45,6 +50,27 @@ document.addEventListener('click', function (e) {
 document.querySelector(".btn-back").addEventListener("click", ()=>{
   window.location.href = "/catalogo"
 });
+
+
+document.querySelector(".btn-more").addEventListener("click", () => {
+    const path = window.location.pathname; // "/infoPersonaje/1"
+    const parts = path.split('/');
+    const id = parts[parts.length - 1]; // "1"
+
+    fetch('/infoPersonaje', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ id: id })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error('Error:', err));
+
+});
+
 
 
 

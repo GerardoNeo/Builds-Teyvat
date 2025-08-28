@@ -107,6 +107,6 @@ document.querySelector(".list-pj").addEventListener("click", (e) => {
     let id = e.target.closest(".pj").id;
 
     if (e.target.closest(".pj")) {
-        window.location.href = `/infoPersonaje${id}`;
+        window.location.href = `/infoPersonaje/${id}`;
     }
 });

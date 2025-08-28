@@ -9,9 +9,12 @@ Route::get('/', function () {
 });
 
 //vistas
-Route::get('/infoPersonaje{id}', [ViewsController::class, 'infoPag']);
+Route::get('/infoPersonaje/{id}', [ViewsController::class, 'infoPag']);
 Route::get('/catalogo', [ViewsController::class, 'catalogo']);
 
 //Catalogo
 Route::get('/catalogo/list', [CatalogoController::class, 'listPj']);
+
+Route::post('/infoPersonaje', [CatalogoController::class, 'si']);
+
 

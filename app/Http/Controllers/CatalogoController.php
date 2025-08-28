@@ -17,4 +17,17 @@ class CatalogoController extends Controller
 
         return response()->json($list);
     }
+
+    function si(Request $request)
+    {
+        $id = $request->input('id'); // obtenemos la id enviada en el body
+
+        $info = DB::table('info_personaje')
+            ->where('id_personaje', $id)
+            ->first();
+
+        return response()->json($info); // devolvemos JSON
+    }
+
+
 }
