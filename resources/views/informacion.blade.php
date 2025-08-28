@@ -56,6 +56,18 @@
             </div>
         </div>
     </div>
+
+    <div class="pop-up-info">
+        <div class="pop-info">
+            <div class="pop-up-cont">
+                <div class="pop-content">
+                    <div class="select"></div>
+                    <div class="pj-text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="{{  asset('js/informacion.js') }}"></script>
 </html>

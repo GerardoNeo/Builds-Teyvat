@@ -51,25 +51,35 @@ document.querySelector(".btn-back").addEventListener("click", ()=>{
   window.location.href = "/catalogo"
 });
 
+let info_pj;
 
 document.querySelector(".btn-more").addEventListener("click", () => {
     const path = window.location.pathname; // "/infoPersonaje/1"
     const parts = path.split('/');
     const id = parts[parts.length - 1]; // "1"
 
-    fetch('/infoPersonaje', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({ id: id })
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.error('Error:', err));
+    let pop = document.querySelector(".pop-up-info");
+    let print = document.querySelector(".select");
+    let lis = ['detalles', 'historia 1', 'historia 2', 'historia 3', 'historia 4', 'historia 5', 'vision']
+    let i = 0
+    pop.style.display = "flex"
 
+    lis.forEach(li =>{
+        let div = document.createElement("div");
+        div.classList.add("option");
+        div.innerHTML = `<p>${li}</p>`;
+
+        print.appendChild(div);
+    })
+
+    fetch(`/infoPersonaje/${id}/info`)
+    .then(data => data.json())
+    .then(data =>{
+      info_pj = data;
+      document.querySelector(".pj-text").innerHTML = `<p>${data[0].detalles}</p>`
+    });
 });
+
 
 
 
