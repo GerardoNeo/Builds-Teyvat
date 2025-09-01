@@ -49,9 +49,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         console.log(data)
         data.forEach(pj =>{
             let div = document.createElement("div")
-            div.classList.add("pj");
+            if(data.estrellas == 4){
+                div.classList.add("pj-cuatro");
+            }else{
+                div.classList.add("pj-cinco");
+            }
             div.id = pj.id_personaje;
-            if(pj.nombre.length >= 10){
+            if(pj.nombre.length > 10){
                 let partes = pj.nombre.split(" ");
                 div.innerHTML = `
                 <div class="font-content"  id="${pj.nombre_ele}">

@@ -191,15 +191,29 @@ body{
     height: 90%;
 }
 
-.pj{
+
+
+.pj-cuatro{
     display: flex;
     flex-direction: column;
     cursor: pointer;
     border-radius: 10px;
     width: 150px;
     height: 200px;
-    border: 2px solid rgb(var(--blanco_letra), .5);
-    background-color: rgb(var(--color_head), .4);
+    border: 2px solid rgb(var(--blanco_letra), 1);
+    background-color: rgb(var(--cuatro_est), 7);
+    transition: .5s;
+}
+
+.pj-cinco{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    border: 2px solid rgb(var(--blanco_letra), 1);
+    background-color: rgb(var(--cinco_est), 7);
     transition: .5s;
 }
 

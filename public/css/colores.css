@@ -15,4 +15,8 @@
     --anemo: 58, 255, 181;    /* 🌿 Anemo */
     --geo: 255, 184, 76;      /* ⛰️ Geo */
     --dendro: 159, 239, 0;    /* 🍃 Dendro */
+
+    /*Colores calidad*/
+    --cinco_est: 211, 175, 55;
+    --cuatro_est: 163, 53, 238;
 }

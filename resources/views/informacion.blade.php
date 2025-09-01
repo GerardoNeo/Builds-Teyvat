@@ -40,7 +40,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="coment-row"></div>
+                    <div class="coment-row">
+                        <div class="new-coment">
+                            <input type="text" id="new-c">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="info-column2">
@@ -50,8 +54,8 @@
                     </div>
                 </div>
                 <div class="weapon-column">
-                    <div class="item"></div>
-                    <div class="item"></div>
+                    <div class="item" id="weapon"></div>
+                    <div class="item" id="artefact"></div>
                 </div>
             </div>
         </div>

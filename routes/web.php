@@ -16,5 +16,7 @@ Route::get('/catalogo', [ViewsController::class, 'catalogo']);
 Route::get('/catalogo/list', [CatalogoController::class, 'listPj']);
 
 Route::get('/infoPersonaje/{id}/info', [CatalogoController::class, 'si']);
+Route::get('/artefacto', [CatalogoController::class, 'no']);
+
 
 

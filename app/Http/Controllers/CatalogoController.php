@@ -27,5 +27,11 @@ class CatalogoController extends Controller
         return response()->json($info);
     }
 
+    function no()
+    {
+        $info = DB::table('artefacto')
+            ->get();
 
+        return response()->json($info);
+    }
 }

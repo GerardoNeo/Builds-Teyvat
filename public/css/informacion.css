@@ -72,6 +72,9 @@ body{
 }
 
 .item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80%;
     height: 43%;
     background-color: rgba(var(--color_head), .3);
@@ -288,9 +291,6 @@ body{
     border-radius: 10px;
 }
 
-.option:hover{
-    
-}
 
 .option p{
     margin: 0;
@@ -313,4 +313,38 @@ body{
     width: 90%;
     height: 90%;
     overflow-y: scroll;
+}
+
+.art-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 95%;
+}
+
+.art-item p{
+    margin: 0;
+    text-align: center;
+    color: rgb(var(--blanco_letra));
+}
+
+.art-color{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 70%;
+    height: 70%;
+    background-color: rgb(var(--cinco_est));
+}
+
+.art-color p{
+    margin: 0;
+    font-size: small;
+}
+
+.art-color img{
+    width: 4.5em;
 }

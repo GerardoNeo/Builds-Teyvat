@@ -80,7 +80,27 @@ document.querySelector(".btn-more").addEventListener("click", () => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", artefactos);
 
+function artefactos(){
+  fetch('/artefacto')
+  .then(data => data.json())
+  .then(data =>{
+    data.forEach(art => {
+      let div = document.createElement('div');
+      div.classList.add('art-item');
+      div.innerHTML = `
+      <p>Set recomendado</p>
+      <div class="art-color">
+        <img src="${art.art_url}">
+        <p>${art.nombre_set}</p>
+      </div>
+      <div></div>`
+      console.log(data)
+      document.getElementById('artefact').appendChild(div);
+    })
+  })
+}
 
 
 
