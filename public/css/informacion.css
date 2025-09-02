@@ -121,17 +121,44 @@ body{
     border-radius: 10px;
 }
 
-.pj-pyro{
+.font-anemo, .font-geo, .font-electro, .font-dendro, .font-hydro, .font-pyro, .font-cryo{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60%;
     height: 90%;
     border-radius: 10px;
-    background-color: rgb(var(--cryo),.6);
 }
 
-.pj-pyro img{
+.font-anemo{
+    background-color: rgba(var(--anemo));
+}
+
+.font-geo{
+    background-color: rgb(var(--geo));
+}
+
+.font-electro{
+    background-color: rgb(var(--electro));
+}
+
+.font-dendro{
+    background-color: rgb(var(--dendro));
+}
+
+.font-hydro{
+    background-color: rgb(var(--hydro));
+}
+
+.font-pyro{
+    background-color: rgba(var(--pyro));
+}
+
+.font-cryo{
+    background-color: rgb(var(--cryo));
+}
+
+img{
     width: 180%;
 }
 
@@ -289,12 +316,24 @@ body{
     height: 10%;
     background-color: rgba(var(--color_head), .45);
     border-radius: 10px;
+    transition: .6s;
 }
 
+.on{
+    background-color: rgba(var(--color_gris_claro), .5);
+}
+
+<<<<<<< Updated upstream
+=======
+.option:hover{
+    background-color: rgba(var(--color_gris_claro), .5);
+}
+>>>>>>> Stashed changes
 
 .option p{
     margin: 0;
-    color: rgb(var(--blanco_letra), .7);
+    font-size: 20px;
+    color: rgb(var(--blanco_letra), .8);
 }
 
 .pj-text{
@@ -307,11 +346,14 @@ body{
     border-radius: 10px;
 }
 
-.pj-text p{
+.text{
+    font-size: 18px;
     margin: 0;
+    white-space: pre-line;
     color: rgb(var(--blanco_letra), .7);
     width: 90%;
     height: 90%;
+<<<<<<< Updated upstream
     overflow-y: scroll;
 }
 
@@ -347,4 +389,48 @@ body{
 
 .art-color img{
     width: 4.5em;
+=======
+    overflow-y: auto;
+}
+
+.close-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 9%;
+    right: 29%;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgb(0, 110, 255);
+}
+
+.close-btn p{
+    margin: 0;
+    color: rgb(var(--blanco_letra));
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--blanco_letra));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4E4E4E;
+  border-radius: 10px;
+  border: 3px solid rgb(var(--blanco_letra));   
+  transition: 0.5s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #616161;
+>>>>>>> Stashed changes
 }

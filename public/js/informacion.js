@@ -1,8 +1,25 @@
-let token
-document.addEventListener("DOMContentLoaded", () =>{
-  token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  console.log(token)
-})
+document.addEventListener("DOMContentLoaded", conseguir_info())
+
+function conseguir_info(){
+  const path = window.location.pathname;
+  const parts = path.split('/');
+  const id = parts[parts.length - 1];
+
+  fetch(`/infoPersonaje/${id}/info`)
+  .then(data => data.json())
+  .then(data =>{
+    console.log(data)
+    document.querySelector(".pj-row").innerHTML = `
+    <p>${data.nombre}</p>
+    <div class="font-${data.nombre_ele.toLowerCase()}">
+      <img src="${data.banner_url}">
+    </div>
+    `
+    info_pj = data;
+    document.querySelector(".pj-text").innerHTML = `<div class="text">${data.detalles.replace(/\\n/g, '<br>')}</div>`;
+  });
+}
+
 let op = document.querySelectorAll(".equip-img");
 
 op.forEach((btn) => {
@@ -54,30 +71,25 @@ document.querySelector(".btn-back").addEventListener("click", ()=>{
 let info_pj;
 
 document.querySelector(".btn-more").addEventListener("click", () => {
-    const path = window.location.pathname; // "/infoPersonaje/1"
-    const parts = path.split('/');
-    const id = parts[parts.length - 1]; // "1"
-
     let pop = document.querySelector(".pop-up-info");
-    let print = document.querySelector(".select");
-    let lis = ['detalles', 'historia 1', 'historia 2', 'historia 3', 'historia 4', 'historia 5', 'vision']
-    let i = 0
     pop.style.display = "flex"
+});
 
-    lis.forEach(li =>{
-        let div = document.createElement("div");
-        div.classList.add("option");
-        div.innerHTML = `<p>${li}</p>`;
-
-        print.appendChild(div);
-    })
-
-    fetch(`/infoPersonaje/${id}/info`)
-    .then(data => data.json())
-    .then(data =>{
-      info_pj = data;
-      document.querySelector(".pj-text").innerHTML = `<p>${data[0].detalles}</p>`
+document.querySelectorAll(".option").forEach(op => {
+  
+  op.addEventListener("click", () => {
+    document.querySelectorAll(".option.on").forEach(active => {
+      active.classList.remove("on");
     });
+    op.classList.add("on");
+    //console.log("click");
+    const campo = op.getAttribute("data-campo");
+    document.querySelector(".pj-text").innerHTML = `<div class="text">${info_pj[campo].replace(/\\n/g, '<br>')}</div>`;
+  })
+})
+
+document.querySelector(".close-btn").addEventListener("click", () =>{
+  document.querySelector(".pop-up-info").style.display = "none"
 });
 
 document.addEventListener("DOMContentLoaded", artefactos);

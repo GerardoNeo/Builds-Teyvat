@@ -20,9 +20,11 @@ class CatalogoController extends Controller
 
     function si($id)
     {
-        $info = DB::table('info_personaje')
-            ->where('id_personaje', $id)
-            ->get();
+        $info = DB::table('info_personaje as a')
+            ->join('personaje as b', 'a.id_personaje', '=', 'b.id_personaje')
+            ->join('elemento as c', 'b.id_elemento', '=', 'c.id_elemento')
+            ->where('a.id_personaje', $id)
+            ->first();
 
         return response()->json($info);
     }

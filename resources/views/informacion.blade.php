@@ -23,9 +23,7 @@
                     </div>
                     <div class="info-row">
                         <div class="pj-row">
-                            <div class="pj-pyro">
-                                <img src="/img/Ganyu_banner.webp" alt="">
-                            </div>
+                            
                         </div>
                         <div class="pj-info-row">
                             <div class="info-pj-content">
@@ -64,9 +62,35 @@
     <div class="pop-up-info">
         <div class="pop-info">
             <div class="pop-up-cont">
+                <div class="close-btn">
+                    <p>X</p>
+                </div>
                 <div class="pop-content">
-                    <div class="select"></div>
+                    <div class="select">
+                        <div class="option on" data-campo="detalles">
+                            <p>Detalles</p>
+                        </div>
+                        <div class="option" data-campo="historia1">
+                            <p>Historia 1</p>
+                        </div>
+                        <div class="option" data-campo="historia2">
+                            <p>Historia 2</p>
+                        </div>
+                        <div class="option" data-campo="historia3">
+                            <p>Historia 3</p>
+                        </div>
+                        <div class="option" data-campo="historia4">
+                            <p>Historia 4</p>
+                        </div>
+                        <div class="option" data-campo="historia5">
+                            <p>Historia 5</p>
+                        </div>
+                        <div class="option" data-campo="vision">
+                            <p>Vision</p>
+                        </div>
+                    </div>
                     <div class="pj-text">
+                        <p></p>
                     </div>
                 </div>
             </div>
