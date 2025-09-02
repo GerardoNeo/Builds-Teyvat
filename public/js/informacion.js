@@ -11,7 +11,7 @@ function conseguir_info(){
     console.log(data)
     document.querySelector(".pj-row").innerHTML = `
     <p>${data.nombre}</p>
-    <div class="font-${data.nombre_ele.toLowerCase()}">
+    <div class="font ${data.nombre_ele.toLowerCase()}">
       <img src="${data.banner_url}">
     </div>
     `

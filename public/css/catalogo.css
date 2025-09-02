@@ -191,9 +191,7 @@ body{
     height: 90%;
 }
 
-
-
-.pj-cuatro{
+.pj{
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -201,25 +199,24 @@ body{
     width: 150px;
     height: 200px;
     border: 2px solid rgb(var(--blanco_letra), 1);
-    background-color: rgb(var(--cuatro_est), 7);
+    /*background-color: rgba(var(--color_head), .3);*/
     transition: .5s;
 }
 
-.pj-cinco{
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    border-radius: 10px;
-    width: 150px;
-    height: 200px;
-    border: 2px solid rgb(var(--blanco_letra), 1);
-    background-color: rgb(var(--cinco_est), 7);
+.cuatro{
+    background: radial-gradient(rgba(var(--cuatro_est)), rgba(var(--cuatro_est), .6));
+    transition: 3s;
+}
+
+.cinco{
+    background: radial-gradient(rgba(var(--cinco_est)), rgba(var(--cinco_est), .6));
     transition: .5s;
+
 }
 
 .font-content{
     display: flex;
-    justify-content: center;
+    justify-content: center;    
     align-items: center;
     width: 100%;
     height: 70%;
@@ -255,10 +252,10 @@ img{
 
 .pj:hover{
     /*transform: scale(1.015);*/
-    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.8);
 }
 
-.font-anemo, .font-geo, .font-electro, .font-dendro, .font-hydro, .font-pyro, .font-cryo{
+.font{
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -268,31 +265,31 @@ img{
     border-radius: 10px;
 }
 
-.font-anemo{
+.anemo{
     background-color: rgba(var(--anemo));
 }
 
-.font-geo{
+.geo{
     background-color: rgb(var(--geo));
 }
 
-.font-electro{
+.electro{
     background-color: rgb(var(--electro));
 }
 
-.font-dendro{
+.dendro{
     background-color: rgb(var(--dendro));
 }
 
-.font-hydro{
+.hydro{
     background-color: rgb(var(--hydro));
 }
 
-.font-pyro{
+.pyro{
     background-color: rgba(var(--pyro));
 }
 
-.font-cryo{
+.cryo{
     background-color: rgb(var(--cryo));
 }
 

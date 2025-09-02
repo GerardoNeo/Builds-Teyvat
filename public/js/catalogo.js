@@ -49,17 +49,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
         console.log(data)
         data.forEach(pj =>{
             let div = document.createElement("div")
-            if(data.estrellas == 4){
-                div.classList.add("pj-cuatro");
+            div.classList.add("pj");
+            if(pj.estrellas == 4){
+                div.classList.add("cuatro");
             }else{
-                div.classList.add("pj-cinco");
+                div.classList.add("cinco");
             }
             div.id = pj.id_personaje;
             if(pj.nombre.length > 10){
                 let partes = pj.nombre.split(" ");
                 div.innerHTML = `
                 <div class="font-content"  id="${pj.nombre_ele}">
-                    <div class="font-${pj.nombre_ele.toLowerCase()}">
+                    <div class="font ${pj.nombre_ele.toLowerCase()}">
                         <img src="${pj.poster_url}">
                     </div>
                 </div>
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             }else{
                 div.innerHTML = `
                 <div class="font-content"  id="${pj.nombre_ele}">
-                    <div class="font-${pj.nombre_ele.toLowerCase()}">
+                    <div class="font ${pj.nombre_ele.toLowerCase()}">
                         <img src="${pj.poster_url}">
                     </div>
                 </div>

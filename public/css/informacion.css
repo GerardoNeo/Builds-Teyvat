@@ -121,7 +121,7 @@ body{
     border-radius: 10px;
 }
 
-.font-anemo, .font-geo, .font-electro, .font-dendro, .font-hydro, .font-pyro, .font-cryo{
+.font{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,31 +130,31 @@ body{
     border-radius: 10px;
 }
 
-.font-anemo{
+.anemo{
     background-color: rgba(var(--anemo));
 }
 
-.font-geo{
+.geo{
     background-color: rgb(var(--geo));
 }
 
-.font-electro{
+.electro{
     background-color: rgb(var(--electro));
 }
 
-.font-dendro{
+.dendro{
     background-color: rgb(var(--dendro));
 }
 
-.font-hydro{
+.hydro{
     background-color: rgb(var(--hydro));
 }
 
-.font-pyro{
+.pyro{
     background-color: rgba(var(--pyro));
 }
 
-.font-cryo{
+.cryo{
     background-color: rgb(var(--cryo));
 }
 
@@ -323,12 +323,9 @@ img{
     background-color: rgba(var(--color_gris_claro), .5);
 }
 
-<<<<<<< Updated upstream
-=======
 .option:hover{
     background-color: rgba(var(--color_gris_claro), .5);
 }
->>>>>>> Stashed changes
 
 .option p{
     margin: 0;
@@ -353,43 +350,6 @@ img{
     color: rgb(var(--blanco_letra), .7);
     width: 90%;
     height: 90%;
-<<<<<<< Updated upstream
-    overflow-y: scroll;
-}
-
-.art-item{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 95%;
-}
-
-.art-item p{
-    margin: 0;
-    text-align: center;
-    color: rgb(var(--blanco_letra));
-}
-
-.art-color{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    width: 70%;
-    height: 70%;
-    background-color: rgb(var(--cinco_est));
-}
-
-.art-color p{
-    margin: 0;
-    font-size: small;
-}
-
-.art-color img{
-    width: 4.5em;
-=======
     overflow-y: auto;
 }
 
@@ -432,5 +392,4 @@ img{
 
 ::-webkit-scrollbar-thumb:hover {
   background: #616161;
->>>>>>> Stashed changes
 }
