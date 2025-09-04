@@ -1,20 +1,59 @@
 document.addEventListener("DOMContentLoaded", conseguir_info())
 
 function conseguir_info(){
-  const path = window.location.pathname;
-  const parts = path.split('/');
-  const id = parts[parts.length - 1];
+  let path = window.location.pathname;
+  let parts = path.split('/');
+  let id = parts[parts.length - 1];
+
+  console.log(id)
 
   fetch(`/infoPersonaje/${id}/info`)
   .then(data => data.json())
   .then(data =>{
     console.log(data)
-    document.querySelector(".pj-row").innerHTML = `
-    <p>${data.nombre}</p>
-    <div class="font ${data.nombre_ele.toLowerCase()}">
-      <img src="${data.banner_url}">
-    </div>
-    `
+    let print = document.querySelector(".pj-row");
+    let div = document.createElement("div");
+    div.classList.add("pj-content");
+    if(data.estrellas == 4){
+      div.innerHTML = ` 
+      <div class="pj-content-row1">
+        <span>${data.nombre}</span>
+        <div class="star-content">
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+        </div>
+      </div>
+      <div class="font ${data.nombre_ele.toLowerCase()}">
+        <img src="${data.banner_url}">
+      </div>
+      <div class="pj-content-row2">
+        <p>Puntuacion de la comunidad: 45</p>
+      </div>
+      `
+    }else{
+      div.innerHTML = ` 
+      <div class="pj-content-row1">
+        <span>${data.nombre}</span>
+        <div class="star-content">
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+          <i class='bx bxs-star'></i>
+        </div>
+      </div>
+      <div class="font ${data.nombre_ele.toLowerCase()}">
+        <img src="${data.banner_url}">
+      </div>
+      <div class="pj-content-row2">
+        <span></span>
+      </div>
+      `
+    }
+    print.appendChild(div)
+
     info_pj = data;
     document.querySelector(".pj-text").innerHTML = `<div class="text">${data.detalles.replace(/\\n/g, '<br>')}</div>`;
   });

@@ -11,7 +11,7 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90%;
+    height: 93%;
 }
 
 .column-content{
@@ -205,13 +205,10 @@ body{
 
 .cuatro{
     background: radial-gradient(rgba(var(--cuatro_est)), rgba(var(--cuatro_est), .6));
-    transition: 3s;
 }
 
 .cinco{
     background: radial-gradient(rgba(var(--cinco_est)), rgba(var(--cinco_est), .6));
-    transition: .5s;
-
 }
 
 .font-content{

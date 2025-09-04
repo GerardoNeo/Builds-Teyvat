@@ -11,29 +11,10 @@ class CatalogoController extends Controller
         $list = DB::table('elemento as a')
             ->join('personaje as b', 'a.id_elemento', '=', 'b.id_elemento')
             ->join('tipo_arma as c', 'b.id_tp_arma', '=', 'c.id_tp')
-            ->select('b.id_personaje', 'b.nombre', 'a.nombre_ele', 'c.nombre_tp', 'b.poster_url', 'b.banner_url')
+            ->select('b.id_personaje', 'b.nombre', 'a.nombre_ele', 'c.nombre_tp', 'b.poster_url', 'b.banner_url', 'b.estrellas')
             ->orderBy('b.nombre', 'asc')
             ->get();
 
         return response()->json($list);
-    }
-
-    function si($id)
-    {
-        $info = DB::table('info_personaje as a')
-            ->join('personaje as b', 'a.id_personaje', '=', 'b.id_personaje')
-            ->join('elemento as c', 'b.id_elemento', '=', 'c.id_elemento')
-            ->where('a.id_personaje', $id)
-            ->first();
-
-        return response()->json($info);
-    }
-
-    function no()
-    {
-        $info = DB::table('artefacto')
-            ->get();
-
-        return response()->json($info);
     }
 }
