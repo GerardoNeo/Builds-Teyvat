@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\InformacionController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('login');
@@ -22,4 +23,6 @@ Route::get('/infoPersonaje/{id}/info', [InformacionController::class, 'infoPj'])
 Route::get('/artefacto', [InformacionController::class, 'set_recomend']);
 
 
-
+//Login
+Route::post('login/create', [LoginController::class, 'create']);
+Route::post('login/in', [LoginController::class, 'login']);

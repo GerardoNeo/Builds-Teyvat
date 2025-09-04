@@ -22,21 +22,28 @@
             </div>
             <div class="formu-content">
                 <div class="input-row">
-                    <p>Correo o usuario</p>
+                    <p>Nombre de usuario</p>
+                    <input type="text" placeholder="astro123" id="name">
+                </div>
+                <div class="input-row">
+                    <p>Correo electronico</p>
                     <input type="text" placeholder="example@gmail.com" id="gmail">
                 </div>
                 <div class="input-row">
                     <p>Contraseña</p>
-                    <input type="password" placeholder="*****************" id="pass">
+                    <input type="password" id="pass">
                 </div>
                 <div class="input-row">
                     <p>Repita contraseña</p>
-                    <input type="password" placeholder="*****************" id="pass-rep">
+                    <input type="password" id="pass-rep">
                 </div>
             </div>
             <div class="btn-content">
                 <div class="btn-login">
-                    <p>Iniciar session</p>
+                    <p>Crear cuenta</p>
+                </div>
+                <div class="iniciar">
+                    <p>Tienes cuenta?</p>
                 </div>
             </div>
         </div>

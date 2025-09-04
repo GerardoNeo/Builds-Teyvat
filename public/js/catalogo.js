@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 div.classList.add("cinco");
             }
             div.id = pj.id_personaje;
-            if(pj.nombre.length > 10){
+            if(pj.nombre.length > 11){
                 let partes = pj.nombre.split(" ");
                 div.innerHTML = `
                 <div class="font-content"  id="${pj.nombre_ele}">
