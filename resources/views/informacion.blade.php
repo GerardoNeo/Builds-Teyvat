@@ -40,7 +40,6 @@
                     </div>
                     <div class="coment-row">
                         <div class="new-coment">
-                            <input type="text" id="new-c">
                         </div>
                     </div>
                 </div>
@@ -48,12 +47,17 @@
             <div class="info-column2">
                 <div class="voto-content">
                     <div class="voto-cuadro">
-
+                        <div class="btn-voto">
+                            <p>Votar</p>
+                        </div>
                     </div>
                 </div>
                 <div class="weapon-column">
                     <div class="item" id="weapon"></div>
-                    <div class="item" id="artefact"></div>
+                    <div class="item" id="artefact">
+                        <!--<div class="art-item">-->
+                        <!--</div>-->
+                    </div>
                 </div>
             </div>
         </div>

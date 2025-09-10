@@ -138,17 +138,42 @@ function artefactos(){
   .then(data => data.json())
   .then(data =>{
     data.forEach(art => {
-      let div = document.createElement('div');
-      div.classList.add('art-item');
-      div.innerHTML = `
-      <p>Set recomendado</p>
+      document.getElementById('artefact').innerHTML = `
+      <p>Sets recomendados</p>
       <div class="art-color">
         <img src="${art.art_url}">
         <p>${art.nombre_set}</p>
       </div>
-      <div></div>`
-      console.log(data)
-      document.getElementById('artefact').appendChild(div);
+      <div class="option-content">
+        <div class="op-btn" id="btn-izq">
+          <i class='bx bx-left-arrow-alt'></i>
+        </div>
+        <div class="op-btn" id="btn-med">
+          <i class='bx bxs-star'></i>
+        </div>
+        <div class="op-btn" id="btn-der">
+          <i class='bx bx-right-arrow-alt'></i>
+        </div>
+      </div>
+      `
+      document.getElementById('weapon').innerHTML = `
+      <p>Sets recomendados</p>
+      <div class="art-color">
+        <img src="${art.art_url}">
+        <p>${art.nombre_set}</p>
+      </div>
+      <div class="option-content">
+        <div class="op-btn" id="btn-izq">
+          <i class='bx bx-left-arrow-alt'></i>
+        </div>
+        <div class="op-btn" id="btn-med">
+          <i class='bx bxs-star'></i>
+        </div>
+        <div class="op-btn" id="btn-der">
+          <i class='bx bx-right-arrow-alt'></i>
+        </div>
+      </div>
+      `
     })
   })
 }
