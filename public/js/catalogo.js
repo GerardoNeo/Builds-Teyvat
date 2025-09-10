@@ -3,6 +3,17 @@ let listArma = [];
 let element = ['Anemo', 'Geo', 'Electro', 'Dendro', 'Hydro', 'Pyro', 'Cryo']
 let weapon = ['Espada ligera', 'Arco', 'Lanza', 'Mandoble', 'Catalizador']
 
+document.addEventListener("DOMContentLoaded", () =>{
+    let data = localStorage.getItem("session");
+    //localStorage.removeItem("session")
+    if (data) {
+        //data = JSON.parse(data);
+        console.log("Usuario en sesión:", data);
+    } else {
+        console.log("No hay sesión activa");
+    }
+})
+
 document.querySelectorAll(".item").forEach(item =>{
     item.addEventListener("click", () => {
         let pjs = document.querySelectorAll(".pj");

@@ -38,9 +38,14 @@ class LoginController extends Controller
             if (($existe->nombre_usuario == $request->name || $existe->correo == $request->name) &&
                 password_verify($request->pass1, $existe->password)
             ) {
-                return response()->json(true);
+                return response()->json(['state' => true, 
+                'user' => [
+                    'id' => $existe->id_usuario,
+                    'nombre' => $existe->nombre_usuario
+                ]
+            ]);
             } else {
-                return response()->json(false);
+                return response()->json(['state' => false, 'message' => 'Contraseña incorrecta']);
             }
         }
     }

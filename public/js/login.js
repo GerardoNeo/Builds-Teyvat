@@ -31,7 +31,14 @@ document.querySelector(".btn-login").addEventListener("click", ()=>{
             if(exp.test(inf.correo)){
                 if(inf.pass1 === inf.pass2){
                     create(inf)
-                    //window.location.href = "/catalogo"
+                    acceder(inf)
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.state === true){
+                            localStorage.setItem("session", JSON.stringify(data.user));
+                            setTimeout(window.location.href = "/catalogo", 3000)
+                        }
+                    });
                 }else{
                     alert("las contraseñas deben ser iguales")
                 }
@@ -51,18 +58,20 @@ document.querySelector(".btn-login").addEventListener("click", ()=>{
             let exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if(exp.test(inf.correo)){
                 acceder(inf)
-                .then(response => response.json()) // parsea el JSON del servidor
+                .then(response => response.json())
                 .then(data => {
-                    if(data === true){
-                        setTimeout(window.location.href = "/catalogo", 3000)
+                    if(data.state === true){
+                        localStorage.setItem("session", JSON.stringify(data.user));
+                        window.location.href = "/catalogo"
                     }
                 });
             }else{
                 acceder(inf)
-                .then(response => response.json()) // parsea el JSON del servidor
+                .then(response => response.json())
                 .then(data => {
-                    if(data === true){
-                        setTimeout(window.location.href = "/catalogo", 3000)
+                    if(data.state === true){
+                        localStorage.setItem("session", JSON.stringify(data.user));
+                        window.location.href = "/catalogo"
                     }
                 });
             }
