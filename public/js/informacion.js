@@ -145,13 +145,13 @@ function artefactos(){
         <p>${art.nombre_set}</p>
       </div>
       <div class="option-content">
-        <div class="op-btn" id="btn-izq">
+        <div class="op-btn" id="btn-izq-art">
           <i class='bx bx-left-arrow-alt'></i>
         </div>
-        <div class="op-btn" id="btn-med">
+        <div class="op-btn" id="btn-med-art">
           <i class='bx bxs-star'></i>
         </div>
-        <div class="op-btn" id="btn-der">
+        <div class="op-btn" id="btn-der-art">
           <i class='bx bx-right-arrow-alt'></i>
         </div>
       </div>
@@ -163,13 +163,13 @@ function artefactos(){
         <p>${art.nombre_set}</p>
       </div>
       <div class="option-content">
-        <div class="op-btn" id="btn-izq">
+        <div class="op-btn" id="btn-izq-wea">
           <i class='bx bx-left-arrow-alt'></i>
         </div>
-        <div class="op-btn" id="btn-med">
+        <div class="op-btn" id="btn-med-wea">
           <i class='bx bxs-star'></i>
         </div>
-        <div class="op-btn" id="btn-der">
+        <div class="op-btn" id="btn-der-wea">
           <i class='bx bx-right-arrow-alt'></i>
         </div>
       </div>

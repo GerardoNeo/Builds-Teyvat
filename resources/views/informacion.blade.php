@@ -39,7 +39,21 @@
                         </div>
                     </div>
                     <div class="coment-row">
-                        <div class="new-coment">
+                        <!--<div class="new-coment">
+                            
+                        </div>-->
+                        <div class="comment">
+                            <div class="img-profile"></div>
+                            <div class="text-comment">
+                                <div class="name-comment">
+                                    <p>NeoXD_Play</p>
+                                    <div class="line"></div>
+                                </div>
+                                <div class="content-comment">
+                                    <p>mi vieja we</p>
+                                </div>
+                            </div>
+                            <div class="like-comment"></div>
                         </div>
                     </div>
                 </div>
