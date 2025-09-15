@@ -52,10 +52,15 @@ function conseguir_info(){
       </div>
       `
     }
+    document.querySelector(".perso").classList.add(data.nombre_ele.toLowerCase())
+    document.querySelector(".perso").innerHTML = `<img src="${data.poster_url}">`
+    document.querySelector(".artefacto").innerHTML = `<img src="${data.icon_url}">`
+
     print.appendChild(div)
 
     info_pj = data;
     document.querySelector(".pj-text").innerHTML = `<div class="text">${data.detalles.replace(/\\n/g, '<br>')}</div>`;
+
   });
 }
 
@@ -112,6 +117,15 @@ let info_pj;
 document.querySelector(".btn-more").addEventListener("click", () => {
     let pop = document.querySelector(".pop-up-info");
     pop.style.display = "flex"
+});
+
+document.querySelector(".btn-voto").addEventListener("click", () => {
+    let pop = document.querySelector(".pop-up-voto");
+    pop.style.display = "flex"
+});
+
+document.querySelector(".close-btn-voto").addEventListener("click", () =>{
+  document.querySelector(".pop-up-voto").style.display = "none"
 });
 
 document.querySelectorAll(".option").forEach(op => {

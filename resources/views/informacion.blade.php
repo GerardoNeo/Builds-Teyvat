@@ -39,22 +39,21 @@
                         </div>
                     </div>
                     <div class="coment-row">
-                        <!--<div class="new-coment">
-                            
-                        </div>-->
-                        <div class="comment">
-                            <div class="img-profile"></div>
-                            <div class="text-comment">
-                                <div class="name-comment">
-                                    <p>NeoXD_Play</p>
-                                    <div class="line"></div>
+                       <div class="comment-content">
+                            <div class="comment">
+                                <div class="img-profile"></div>
+                                <div class="text-comment">
+                                    <div class="name-comment">
+                                        <p>NeoXD_Play</p>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="content-comment">
+                                        <p>mi vieja we</p>
+                                    </div>
                                 </div>
-                                <div class="content-comment">
-                                    <p>mi vieja we</p>
-                                </div>
+                                <div class="like-comment"></div>
                             </div>
-                            <div class="like-comment"></div>
-                        </div>
+                       </div>
                     </div>
                 </div>
             </div>
@@ -69,8 +68,6 @@
                 <div class="weapon-column">
                     <div class="item" id="weapon"></div>
                     <div class="item" id="artefact">
-                        <!--<div class="art-item">-->
-                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -109,6 +106,40 @@
                     </div>
                     <div class="pj-text">
                         <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop-up-voto">
+        <div class="pop-voto-content">
+            <div class="close-btn-voto">
+                <p>X</p>
+            </div>
+            <div class="pop-voto">
+                <div class="voto-column-content">
+                    <div class="voto-column1">
+                        <div class="op-voto" id="pj">
+                            <div class="perso">
+                            </div>
+                        </div>
+                        <div class="op-voto" id="arma">
+                            <img src="{{ asset('img/Artefactos.webp') }}">
+                        </div>
+                        <div class="op-voto" id="artef">
+                            <div class="artefacto">
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="voto-column2">
+                        <input type="text">
+                        <div class="voto-print"></div>
+                        <div class="btn-confirm-voto">
+                            <p>Votar</p>
+                        </div>
                     </div>
                 </div>
             </div>

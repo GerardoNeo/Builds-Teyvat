@@ -9,10 +9,11 @@ class InformacionController extends Controller
 {
     function infoPj($id)
     {
-        $info = DB::table('info_personaje as a')
-            ->join('personaje as b', 'a.id_personaje', '=', 'b.id_personaje')
-            ->join('elemento as c', 'b.id_elemento', '=', 'c.id_elemento')
-            ->where('a.id_personaje', $id)
+        $info = DB::table('info_personaje')
+            ->join('personaje', 'info_personaje.id_personaje', '=', 'personaje.id_personaje')
+            ->join('elemento', 'personaje.id_elemento', '=', 'elemento.id_elemento')
+            ->join('tipo_arma', 'personaje.id_tp_arma', '=', 'tipo_arma.id_tp')
+            ->where('info_personaje.id_personaje', $id)
             ->first();
 
         return response()->json($info);
