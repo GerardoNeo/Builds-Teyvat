@@ -15,7 +15,9 @@ function conseguir_comentarios(){
       let div = document.createElement("div");
       div.classList.add("comment");
       div.innerHTML = `
-      <div class="img-profile"></div>
+      <div class="img-profile">
+        <img src="${comment.foto_url}">
+      </div>
       <div class="text-comment">
         <div class="name-comment">
           <p>${comment.nombre_usuario}</p>

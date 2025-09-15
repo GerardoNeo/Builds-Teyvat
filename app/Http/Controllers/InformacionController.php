@@ -45,7 +45,7 @@ class InformacionController extends Controller
     function comments($id){
         $comentarios = DB::table('comentario as a')
             ->join('usuario as b', 'a.id_usuario', '=', 'b.id_usuario')
-            ->select('b.nombre_usuario', 'a.texto', 'a.fecha')
+            ->select('b.nombre_usuario', 'a.texto', 'a.fecha', 'b.foto_url')
             ->where('a.id_personaje', $id)
             ->get();
 

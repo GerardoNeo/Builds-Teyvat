@@ -41,15 +41,17 @@
                     <div class="coment-row">
                         <div class="new-comment">
                             <div class="new-input">
-                                <input type="text" id="new-comment">
+                                <input type="text" id="new-comment" placeholder="Comenta...">
                                 <div class="btn-comment">
                                     <span><i class='bx bx-send'></i></span>
                                 </div>
                             </div>
                             <div class="line-new"></div>
                         </div>
-                        <div class="comment-content">
+                        <div class="comments">
+                            <div class="comment-content">
                             
+                            </div>
                         </div>
                     </div>
                 </div>
