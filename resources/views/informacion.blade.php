@@ -39,21 +39,18 @@
                         </div>
                     </div>
                     <div class="coment-row">
-                       <div class="comment-content">
-                            <div class="comment">
-                                <div class="img-profile"></div>
-                                <div class="text-comment">
-                                    <div class="name-comment">
-                                        <p>NeoXD_Play</p>
-                                        <div class="line"></div>
-                                    </div>
-                                    <div class="content-comment">
-                                        <p>mi vieja we</p>
-                                    </div>
+                        <div class="new-comment">
+                            <div class="new-input">
+                                <input type="text" id="new-comment">
+                                <div class="btn-comment">
+                                    <span><i class='bx bx-send'></i></span>
                                 </div>
-                                <div class="like-comment"></div>
                             </div>
-                       </div>
+                            <div class="line-new"></div>
+                        </div>
+                        <div class="comment-content">
+                            
+                        </div>
                     </div>
                 </div>
             </div>

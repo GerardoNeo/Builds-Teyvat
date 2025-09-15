@@ -1,10 +1,42 @@
-document.addEventListener("DOMContentLoaded", conseguir_info())
+let pj;
+document.addEventListener("DOMContentLoaded", conseguir_info(), conseguir_comentarios())
+
+function conseguir_comentarios(){
+  localStorage.removeItem("session")
+  let path = window.location.pathname;
+  let parts = path.split('/');
+  let id = parts[parts.length - 1];
+
+  fetch(`/comments/${id}`)
+  .then(data => data.json())
+  .then(data =>{
+    console.log(data)
+    data.forEach(comment =>{
+      let div = document.createElement("div");
+      div.classList.add("comment");
+      div.innerHTML = `
+      <div class="img-profile"></div>
+      <div class="text-comment">
+        <div class="name-comment">
+          <p>${comment.nombre_usuario}</p>
+          <div class="line"></div>
+        </div>
+        <div class="content-comment">
+          <p>${comment.texto}</p>
+        </div>
+      </div>
+      <div class="like-comment"></div>`
+
+      document.querySelector(".comment-content").appendChild(div)
+    })
+  })
+}
 
 function conseguir_info(){
   let path = window.location.pathname;
   let parts = path.split('/');
   let id = parts[parts.length - 1];
-
+  pj = id;
   console.log(id)
 
   fetch(`/infoPersonaje/${id}/info`)
@@ -192,5 +224,57 @@ function artefactos(){
   })
 }
 
+document.querySelector(".btn-comment").addEventListener("click", () =>{
+  let aux = document.getElementById("new-comment");
+  if(localStorage.getItem("session")){
+    if(aux.value == ''){
+      alert("escriba algo, no mame")
+    }else{
+      id_usuario = localStorage.getItem("session");
+      id_usuario = JSON.parse(id_usuario).id;
+      console.log(id_usuario)
+      comment ={
+        autor: id_usuario,
+        pj: pj,
+        text: aux.value,
+        fecha: getDateTime()
+      }
+      //console.log(comment)
+      newcomment(comment)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      });
+    }
+  }else{
+    alert("Inisia sesion")
+  }
+})
+
+function newcomment(comment){
+    return fetch("/newComment", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(comment)
+    });
+}
+
+function getDateTime() {
+  const now = new Date();
+
+  const year   = now.getFullYear();
+  const month  = String(now.getMonth() + 1).padStart(2, '0');
+  const day    = String(now.getDate()).padStart(2, '0');
+
+  const hours   = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
 
 

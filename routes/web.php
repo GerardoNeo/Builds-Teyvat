@@ -21,7 +21,8 @@ Route::get('/catalogo/list', [CatalogoController::class, 'listPj']);
 //Informacion
 Route::get('/infoPersonaje/{id}/info', [InformacionController::class, 'infoPj']);
 Route::get('/artefacto', [InformacionController::class, 'set_recomend']);
-
+Route::get('/comments/{id}', [InformacionController::class, 'comments']);
+Route::post('/newComment', [InformacionController::class, 'new_comment']);
 
 //Login
 Route::post('login/create', [LoginController::class, 'create']);

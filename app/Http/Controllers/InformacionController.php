@@ -26,4 +26,29 @@ class InformacionController extends Controller
 
         return response()->json($info);
     }
+
+    function new_comment(Request $request){
+        $ok = DB::table('comentario')->insert([
+            'id_usuario'   => $request->autor,
+            'id_personaje' => $request->pj,
+            'texto'        => $request->text,
+            'fecha'        => $request->fecha
+        ]);
+
+        if(!$ok){
+            return response()->json(['error' => 'No se puedo hacer el comentario'], 400);
+        }else{
+            return response()->json(['status' => true]);
+        }
+    }
+
+    function comments($id){
+        $comentarios = DB::table('comentario as a')
+            ->join('usuario as b', 'a.id_usuario', '=', 'b.id_usuario')
+            ->select('b.nombre_usuario', 'a.texto', 'a.fecha')
+            ->where('a.id_personaje', $id)
+            ->get();
+
+        return response()->json($comentarios);
+    }
 }
