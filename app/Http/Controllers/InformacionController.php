@@ -31,8 +31,7 @@ class InformacionController extends Controller
         $ok = DB::table('comentario')->insert([
             'id_usuario'   => $request->autor,
             'id_personaje' => $request->pj,
-            'texto'        => $request->text,
-            'fecha'        => $request->fecha
+            'texto'        => $request->text
         ]);
 
         if(!$ok){

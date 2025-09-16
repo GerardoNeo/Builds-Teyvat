@@ -2,7 +2,7 @@ let pj;
 document.addEventListener("DOMContentLoaded", conseguir_info(), conseguir_comentarios())
 
 function conseguir_comentarios(){
-  localStorage.removeItem("session")
+  //localStorage.removeItem("session")
   let path = window.location.pathname;
   let parts = path.split('/');
   let id = parts[parts.length - 1];
@@ -238,14 +238,15 @@ document.querySelector(".btn-comment").addEventListener("click", () =>{
       comment ={
         autor: id_usuario,
         pj: pj,
-        text: aux.value,
-        fecha: getDateTime()
+        text: aux.value
       }
       //console.log(comment)
       newcomment(comment)
       .then(response => response.json())
       .then(data => {
         console.log(data)
+        aux.value = ""
+        conseguir_comentarios();
       });
     }
   }else{
