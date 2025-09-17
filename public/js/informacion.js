@@ -1,5 +1,7 @@
 let pj;
-document.addEventListener("DOMContentLoaded", conseguir_info(), conseguir_comentarios())
+let arte
+let arma
+document.addEventListener("DOMContentLoaded", conseguir_info(), conseguir_comentarios(), artefactos(), armas())
 
 function conseguir_comentarios(){
   //localStorage.removeItem("session")
@@ -89,6 +91,7 @@ function conseguir_info(){
     document.querySelector(".perso").classList.add(data.nombre_ele.toLowerCase())
     document.querySelector(".perso").innerHTML = `<img src="${data.poster_url}">`
     document.querySelector(".artefacto").innerHTML = `<img src="${data.icon_url}">`
+    document.querySelector(".column3-voto-content").innerHTML =`<img src= "${data.poster_url}">`
 
     print.appendChild(div)
 
@@ -136,6 +139,86 @@ op.forEach((btn) => {
 
 });
 
+function artefactos(){
+  fetch('/artefacto')
+  .then(data => data.json())
+  .then(data =>{
+    arte = data
+  })
+}
+
+function armas(){
+  fetch('/arma')
+  .then(data => data.json())
+  .then(data =>{
+    arma = data
+  })
+}
+
+document.querySelectorAll(".op-voto").forEach(op =>{
+  op.addEventListener("click", () => {
+    if(op.id == "pj"){
+      document.querySelector(".voto-column2").style.display = "none";
+      document.querySelector(".voto-column3").style.display = "flex";
+    }else{
+      if(op.id == "arma"){
+        document.querySelector(".voto-column2").style.display = "flex";
+        document.querySelector(".voto-column3").style.display = "none";
+        let print = document.querySelector(".voto-print");
+        print.innerHTML = ""
+        arma.forEach(art => {
+          for(i = 0; i<3; i++){
+            let div = document.createElement("div");
+          div.classList.add("artefacto-voto");
+          div.innerHTML = `
+          <div class="art-op" id="${i+1}">
+              <img src="${art.arma_url}">
+              <p>${art.nombre_arma}</p>
+          </div>
+          `;
+
+          print.appendChild(div);
+          }
+        })
+      }else{
+        document.querySelector(".voto-column2").style.display = "flex";
+        document.querySelector(".voto-column3").style.display = "none";
+        let print = document.querySelector(".voto-print");
+        print.innerHTML = ""
+        arte.forEach(art => {
+          for(i = 0; i<3; i++){
+            let div = document.createElement("div");
+          div.classList.add("artefacto-voto");
+          div.innerHTML = `
+          <div class="art-op" id="${i+1}">
+              <img src="${art.art_url}">
+              <p>${art.nombre_set}</p>
+          </div>
+          `;
+
+          print.appendChild(div);
+          }
+        })
+      }
+    }
+  })
+})
+
+document.querySelector(".voto-print").addEventListener("click", (e) => {
+  let art = e.target.closest(".art-op");
+  if(!art){
+    return;
+  }
+  console.log("click art-op:", art);
+  
+  art.classList.add("on")
+  console.log("click en art-op:", art);
+
+  console.log("ID del artefacto:", art.id);
+});
+
+
+
 document.addEventListener('click', function (e) {
   if (e.target.matches(".close-popup")) {
     e.target.closest(".popup-info").remove();
@@ -179,9 +262,9 @@ document.querySelector(".close-btn").addEventListener("click", () =>{
   document.querySelector(".pop-up-info").style.display = "none"
 });
 
-document.addEventListener("DOMContentLoaded", artefactos);
+document.addEventListener("DOMContentLoaded", artefactos_recomendados());
 
-function artefactos(){
+function artefactos_recomendados(){
   fetch('/artefacto')
   .then(data => data.json())
   .then(data =>{

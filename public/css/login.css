@@ -14,9 +14,23 @@ body{
     height: 93%;
 }
 
-.login-content{
+.login-content-registrar{
+    display: flex;
+    flex-direction: column;
     width: 30%;
     height: 80%;
+    background: url("/img/3.jpg");
+    box-shadow: 5px 5px 8px 5px rgba(0, 0, 0, 0.4);
+    background-size: cover;
+    background-position: center;
+    border-radius: 50px;
+}
+
+.login-content-entrar{
+    display: none;
+    flex-direction: column;
+    width: 30%;
+    height: 70%;
     background: url("/img/3.jpg");
     box-shadow: 5px 5px 8px 5px rgba(0, 0, 0, 0.4);
     background-size: cover;
@@ -34,10 +48,10 @@ body{
 
 .circle{
     border: 6px solid rgba(var(--blanco_letra), .5);
-    border-radius: 100%;
+    border-radius: 50%;
 }
 
-.bx-user{
+.circle .bx-user{
     font-size: 100px;
     color: rgba(var(--blanco_letra), .5);
 }
@@ -92,7 +106,7 @@ body{
     color: rgba(var(--blanco_letra), .9);
 }
 
-.btn-login{
+.btn-log, .btn-in{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,12 +119,19 @@ body{
     transition: .4s;
 }
 
-.btn-login:hover{
+.btn-log:hover, .btn-in:hover{
     transform: translateY(-5px);
     background-color: rgba(var(--color_gris_claro), .75);
 }
 
-.btn-login p{
+.btn-log p, .btn-in p{
     color: rgba(var(--blanco_letra));
     margin: 0;
+}
+
+.change p{
+    color: rgba(var(--blanco_letra), 3);
+    margin: 0;
+    cursor: pointer;
+    transition: .4s;
 }

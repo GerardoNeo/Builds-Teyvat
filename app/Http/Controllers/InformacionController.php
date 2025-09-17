@@ -27,6 +27,14 @@ class InformacionController extends Controller
         return response()->json($info);
     }
 
+    function arma_recomend()
+    {
+        $info = DB::table('arma')
+            ->get();
+
+        return response()->json($info);
+    }
+
     function new_comment(Request $request){
         $ok = DB::table('comentario')->insert([
             'id_usuario'   => $request->autor,

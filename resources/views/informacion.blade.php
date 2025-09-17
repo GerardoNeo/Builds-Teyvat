@@ -123,10 +123,10 @@
                             <div class="perso">
                             </div>
                         </div>
-                        <div class="op-voto" id="arma">
+                        <div class="op-voto" id="artef">
                             <img src="{{ asset('img/Artefactos.webp') }}">
                         </div>
-                        <div class="op-voto" id="artef">
+                        <div class="op-voto" id="arma">
                             <div class="artefacto">
 
                             </div>
@@ -135,7 +135,18 @@
                     </div>
                     <div class="voto-column2">
                         <input type="text">
-                        <div class="voto-print"></div>
+                        <div class="voto-print-content">
+                            <div class="voto-print"></div>
+                        </div>
+                        <div class="btn-confirm-voto">
+                            <p>Votar</p>
+                        </div>
+                    </div>
+
+                    <div class="voto-column3">
+                        <div class="column3-voto-content">
+
+                        </div>
                         <div class="btn-confirm-voto">
                             <p>Votar</p>
                         </div>

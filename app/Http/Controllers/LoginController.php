@@ -36,7 +36,7 @@ class LoginController extends Controller
             return response()->json(['error' => 'No existe ese usuario o correo'], 400);
         }else{
             if (($existe->nombre_usuario == $request->name || $existe->correo == $request->name) &&
-                password_verify($request->pass1, $existe->password)
+                password_verify($request->pass, $existe->password)
             ) {
                 return response()->json(['state' => true, 
                 'user' => [

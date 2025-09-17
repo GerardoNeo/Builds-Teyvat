@@ -11,10 +11,14 @@
 </head>
 <body>
     <header>
+        <div></div>
         <p>Builts Teyvat</p>
+        <div class="login">
+            <i class='bx bx-user'></i>
+        </div>
     </header>
     <div class="content">
-        <div class="login-content">
+        <div class="login-content-registrar">
             <div class="perfil">
                 <div class="circle">
                     <i class='bx bx-user'></i>
@@ -23,27 +27,52 @@
             <div class="formu-content">
                 <div class="input-row">
                     <p>Nombre de usuario</p>
-                    <input type="text" placeholder="astro123" id="name">
+                    <input type="text" placeholder="astro123" class="name">
                 </div>
                 <div class="input-row">
                     <p>Correo electronico</p>
-                    <input type="text" placeholder="example@gmail.com" id="gmail">
+                    <input type="text" placeholder="example@gmail.com" class="gmail">
                 </div>
                 <div class="input-row">
                     <p>Contraseña</p>
-                    <input type="password" id="pass">
+                    <input type="password" class="pass">
                 </div>
                 <div class="input-row">
                     <p>Repita contraseña</p>
-                    <input type="password" id="pass-rep">
+                    <input type="password" class="pass-rep">
                 </div>
             </div>
             <div class="btn-content">
-                <div class="btn-login">
+                <div class="btn-log">
                     <p>Crear cuenta</p>
                 </div>
-                <div class="iniciar">
+                <div class="change">
                     <p>Tienes cuenta?</p>
+                </div>
+            </div>
+        </div>
+        <div class="login-content-entrar">
+            <div class="perfil">
+                <div class="circle">
+                    <i class='bx bx-user'></i>
+                </div>
+            </div>
+            <div class="formu-content">
+                <div class="input-row">
+                    <p>Nombre de usuario</p>
+                    <input type="text" placeholder="astro123" class="name-in">
+                </div>
+                <div class="input-row">
+                    <p>Contraseña</p>
+                    <input type="password" class="pass-in">
+                </div>
+            </div>
+            <div class="btn-content">
+                <div class="btn-in">
+                    <p>Iniciar session</p>
+                </div>
+                <div class="change">
+                    <p>No tienes cuenta?</p>
                 </div>
             </div>
         </div>
