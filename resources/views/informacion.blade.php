@@ -139,7 +139,7 @@
                             <div class="voto-print"></div>
                         </div>
                         <div class="btn-confirm-voto">
-                            <p>Votar</p>
+                            <p>Recomendar</p>
                         </div>
                     </div>
 

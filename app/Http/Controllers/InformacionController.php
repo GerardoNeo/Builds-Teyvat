@@ -27,9 +27,10 @@ class InformacionController extends Controller
         return response()->json($info);
     }
 
-    function arma_recomend()
+    function arma_recomend($id)
     {
         $info = DB::table('arma')
+            ->where('id_tp', $id)
             ->get();
 
         return response()->json($info);
@@ -57,5 +58,33 @@ class InformacionController extends Controller
             ->get();
 
         return response()->json($comentarios);
+    }
+
+    function recomendar_arma(Request $request){
+        $ok = DB::table('voto_arma')->insert([
+            'id_usuario'    => $request->id_usuario,
+            'id_arma'       => $request->id_arma,
+            'id_personaje'  => $request->id_personaje
+        ]);
+
+        if(!$ok){
+            return response()->json(['error' => 'No se puedo hacer la recomendacion'], 400);
+        }else{
+            return response()->json(['status' => true]);
+        }
+    }
+
+    function arma_list($id){
+        $result = DB::table('voto_arma as a')
+            ->join('arma as b', 'a.id_arma', '=', 'b.id_arma')
+            ->where('a.id_personaje', $id)
+            ->select('a.*', 'b.*') // puedes ajustar los campos que necesites
+            ->get();
+
+        if(!$result){
+            return response()->json(['error' => 'No hay armas recomendadas'], 400);
+        }else{
+            return response()->json($result);
+        }
     }
 }

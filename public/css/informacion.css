@@ -561,10 +561,6 @@ body{
     transition: .6s;
 }
 
-.on{
-    background-color: rgba(var(--color_gris_claro), .5);
-}
-
 .option:hover{
     background-color: rgba(var(--color_gris_claro), .5);
 }
@@ -883,8 +879,18 @@ body{
     border-radius: 10px;
     border: rgba(var(--blanco_letra)) 1px solid;
     background-color: rgba(var(--color_head), .5);
+    cursor: pointer;
     width: 90px;
     height: 120px;
+    transition: .5s;
+}
+
+.art-op:hover{
+    background-color: rgba(var(--color_gris_claro), .5);
+}
+
+.on{
+    background-color: rgba(var(--color_gris_claro), .5);
 }
 
 .selec{
@@ -894,8 +900,14 @@ body{
 .art-op img{
     width: 75%;
     border-radius: 10px;
-    border: rgba(var(--blanco_letra)) 1px solid;
+}
+
+.cinco{
     background-color: rgba(var(--cinco_est), .7);
+}
+
+.cuatro{
+    background-color: rgba(var(--cuatro_est), .7);
 }
 
 .art-op p{

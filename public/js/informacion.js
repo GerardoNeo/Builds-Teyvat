@@ -1,7 +1,9 @@
 let pj;
-let arte
-let arma
-document.addEventListener("DOMContentLoaded", conseguir_info(), conseguir_comentarios(), artefactos(), armas())
+let arte;
+let arma;
+let voto = null;
+let flag = "pj"
+document.addEventListener("DOMContentLoaded", conseguir_info(), conseguir_comentarios(), artefactos())
 
 function conseguir_comentarios(){
   //localStorage.removeItem("session")
@@ -88,6 +90,7 @@ function conseguir_info(){
       </div>
       `
     }
+    console.log(data)
     document.querySelector(".perso").classList.add(data.nombre_ele.toLowerCase())
     document.querySelector(".perso").innerHTML = `<img src="${data.poster_url}">`
     document.querySelector(".artefacto").innerHTML = `<img src="${data.icon_url}">`
@@ -95,6 +98,7 @@ function conseguir_info(){
 
     print.appendChild(div)
 
+    armas(data.id_tp_arma);
     info_pj = data;
     document.querySelector(".pj-text").innerHTML = `<div class="text">${data.detalles.replace(/\\n/g, '<br>')}</div>`;
 
@@ -147,8 +151,8 @@ function artefactos(){
   })
 }
 
-function armas(){
-  fetch('/arma')
+function armas(id){
+  fetch(`/arma/${id}`)
   .then(data => data.json())
   .then(data =>{
     arma = data
@@ -158,46 +162,54 @@ function armas(){
 document.querySelectorAll(".op-voto").forEach(op =>{
   op.addEventListener("click", () => {
     if(op.id == "pj"){
+      flag = "pj"
       document.querySelector(".voto-column2").style.display = "none";
       document.querySelector(".voto-column3").style.display = "flex";
     }else{
       if(op.id == "arma"){
+        flag = "arma";
         document.querySelector(".voto-column2").style.display = "flex";
         document.querySelector(".voto-column3").style.display = "none";
         let print = document.querySelector(".voto-print");
         print.innerHTML = ""
         arma.forEach(art => {
-          for(i = 0; i<3; i++){
-            let div = document.createElement("div");
+          let div = document.createElement("div");
           div.classList.add("artefacto-voto");
-          div.innerHTML = `
-          <div class="art-op" id="${i+1}">
-              <img src="${art.arma_url}">
-              <p>${art.nombre_arma}</p>
-          </div>
-          `;
+          if(art.num_est == 5){
+            div.innerHTML = `
+            <div class="art-op" id="${art.id_arma}">
+                <img src="${art.arma_url}" class="cinco">
+                <p>${art.nombre_arma}</p>
+            </div>
+            `;
+          }else{
+            div.innerHTML = `
+            <div class="art-op" id="${art.id_arma}">
+                <img src="${art.arma_url}" class="cuatro">
+                <p>${art.nombre_arma}</p>
+            </div>
+            `;
+          }
 
           print.appendChild(div);
-          }
         })
       }else{
+        flag = "artefacto";
         document.querySelector(".voto-column2").style.display = "flex";
         document.querySelector(".voto-column3").style.display = "none";
         let print = document.querySelector(".voto-print");
         print.innerHTML = ""
         arte.forEach(art => {
-          for(i = 0; i<3; i++){
-            let div = document.createElement("div");
+          let div = document.createElement("div");
           div.classList.add("artefacto-voto");
           div.innerHTML = `
-          <div class="art-op" id="${i+1}">
-              <img src="${art.art_url}">
+          <div class="art-op" id="${art.id_art}">
+              <img src="${art.art_url}" class="cinco">
               <p>${art.nombre_set}</p>
           </div>
           `;
 
           print.appendChild(div);
-          }
         })
       }
     }
@@ -209,15 +221,59 @@ document.querySelector(".voto-print").addEventListener("click", (e) => {
   if(!art){
     return;
   }
-  console.log("click art-op:", art);
-  
+  document.querySelectorAll(".art-op.on").forEach(el => el.classList.remove("on"));
   art.classList.add("on")
-  console.log("click en art-op:", art);
-
-  console.log("ID del artefacto:", art.id);
+  voto = art.id;
 });
 
-
+document.querySelector('.btn-confirm-voto').addEventListener('click', () =>{
+  let path = window.location.pathname;
+  let parts = path.split('/');
+  let id = parts[parts.length - 1];
+  if(localStorage.getItem("session")){
+    switch(flag)
+    {
+      case "pj":
+        if(voto != null){
+          console.log(flag + voto)
+        }else{
+          alert("elige una opcion")
+        }
+        break
+      case "arma":
+        if(voto != null){
+          console.log(JSON.parse(localStorage.getItem("session")).id)
+          fetch("/votoArma", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+              },
+              body: JSON.stringify({
+                  id_usuario: JSON.parse(localStorage.getItem("session")).id,
+                  id_arma: voto,
+                  id_personaje: id
+                }
+              )
+          });
+          console.log(flag + voto)
+        }else{
+          alert("elige una opcion")
+        }
+        break;
+      case "artefacto":
+        if(voto != null){
+          console.log(flag + voto)
+        }else{
+          alert("elige una opcion")
+        }
+        break;
+    }
+  }else{
+    alert("inicia session")
+  }
+})
 
 document.addEventListener('click', function (e) {
   if (e.target.matches(".close-popup")) {
@@ -262,7 +318,38 @@ document.querySelector(".close-btn").addEventListener("click", () =>{
   document.querySelector(".pop-up-info").style.display = "none"
 });
 
-document.addEventListener("DOMContentLoaded", artefactos_recomendados());
+document.addEventListener("DOMContentLoaded", arma_recomendadas());
+
+function arma_recomendadas(){
+  let path = window.location.pathname;
+  let parts = path.split('/');
+  let id = parts[parts.length - 1];
+  fetch(`/arma_recomendada/${id}`)
+  .then(data => data.json())
+  .then(data =>{
+    console.log(data)
+    data.forEach(art => {
+      document.getElementById('weapon').innerHTML = `
+      <p>Armas</p>
+      <div class="art-color">
+        <img src="${art.arma_url}">
+        <p>${art.nombre_arma}</p>
+      </div>
+      <div class="option-content">
+        <div class="op-btn" id="btn-izq-wea">
+          <i class='bx bx-left-arrow-alt'></i>
+        </div>
+        <div class="op-btn" id="btn-med-wea">
+          <i class='bx bxs-star'></i>
+        </div>
+        <div class="op-btn" id="btn-der-wea">
+          <i class='bx bx-right-arrow-alt'></i>
+        </div>
+      </div>
+      `
+    })
+  })
+}
 
 function artefactos_recomendados(){
   fetch('/artefacto')
