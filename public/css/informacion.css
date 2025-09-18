@@ -925,6 +925,7 @@ body{
     height: 8%;
     border-radius: 10px;
     background-color: rgba(var(--color_gris_claro), .3);
+    cursor: pointer;
     transition: .5s;
 }
 

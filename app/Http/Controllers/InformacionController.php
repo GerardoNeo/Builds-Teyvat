@@ -61,38 +61,58 @@ class InformacionController extends Controller
     }
 
     function recomendar_arma(Request $request){
-        $ok = DB::table('voto_arma')->insert([
-            'id_usuario'    => $request->id_usuario,
-            'id_arma'       => $request->id_arma,
-            'id_personaje'  => $request->id_personaje
-        ]);
+        $ok = DB::table('voto_arma')
+            ->where('id_personaje', $request->id_personaje)
+            ->where('id_arma', $request->id_arma)
+            ->where('id_usuario', $request->id_usuario)
+            ->exists();
 
         if(!$ok){
-            return response()->json(['error' => 'No se puedo hacer la recomendacion'], 400);
-        }else{
+            $result = DB::table('voto_arma')->insert([
+                'id_usuario'    => $request->id_usuario,
+                'id_arma'       => $request->id_arma,
+                'id_personaje'  => $request->id_personaje
+            ]);
+
             return response()->json(['status' => true]);
+        }else{
+            return response()->json([
+                'status' => false, 
+                'message' => 'Ya votaste por esta arma en este personaje'
+            ], 400);
         }
     }
 
     function recomendar_set(Request $request){
-        $ok = DB::table('voto_set')->insert([
+        $ok = DB::table('voto_set')
+            ->where('id_personaje', $request->id_personaje)
+            ->where('id_art', $request->id_art)
+            ->where('id_usuario', $request->id_usuario)
+            ->exists();
+
+        if(!$ok){
+            $result = DB::table('voto_set')->insert([
             'id_usuario'    => $request->id_usuario,
             'id_art'       => $request->id_art,
             'id_personaje'  => $request->id_personaje
-        ]);
+            ]);
 
-        if(!$ok){
-            return response()->json(['error' => 'No se puedo hacer la recomendacion'], 400);
-        }else{
             return response()->json(['status' => true]);
+        }else{
+            return response()->json([
+                'status' => false, 
+                'message' => 'Ya votaste por esta set en este personaje'
+            ], 400);
         }
     }
                 
     function arma_list($id){
         $result = DB::table('voto_arma as a')
             ->join('arma as b', 'a.id_arma', '=', 'b.id_arma')
+            ->select('b.*', DB::raw('COUNT(a.id_voto_arma) as total_votos'))
             ->where('a.id_personaje', $id)
-            ->select('a.*', 'b.*')
+            ->groupBy('b.id_arma')
+            ->orderByDesc('total_votos')
             ->get();
 
         if(!$result){
@@ -105,10 +125,11 @@ class InformacionController extends Controller
     function set_list($id){
         $result = DB::table('voto_set as a')
             ->join('artefacto as b', 'a.id_art', '=', 'b.id_art')
+            ->select('b.*', DB::raw('COUNT(a.id_voto_set) as total_votos'))
             ->where('a.id_personaje', $id)
-            ->select('a.*', 'b.*')
+            ->groupBy('b.id_art')
+            ->orderByDesc('total_votos')
             ->get();
-
 
         if(!$result){
             return response()->json(['error' => 'No hay sets recomendadas'], 400);

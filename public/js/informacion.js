@@ -3,14 +3,21 @@ let arte;
 let arma;
 let voto = null;
 let flag = "pj"
-document.addEventListener("DOMContentLoaded", ()=>{
-  conseguir_info();
-  conseguir_comentarios();
-  arma_recomendadas();
-  artefactos_recomendados();
-  artefactos();
-})
+let set_rec;
+let set_i = 0;
+let arm_rec;
+let arm_i = 0;
+document.addEventListener("DOMContentLoaded", 
+  conseguir_info(),
+  conseguir_comentarios(),
+  arma_recomendadas(),
+  artefactos_recomendados(),
+  artefactos(),
+)
   
+document.querySelector("header p").addEventListener("click", () =>{
+  localStorage.removeItem("session")
+})
 
 function conseguir_comentarios(){
   //localStorage.removeItem("session")
@@ -21,7 +28,7 @@ function conseguir_comentarios(){
   fetch(`/comments/${id}`)
   .then(data => data.json())
   .then(data =>{
-    console.log(data)
+    //console.log(data)
     data.forEach(comment =>{
       let div = document.createElement("div");
       div.classList.add("comment");
@@ -50,12 +57,12 @@ function conseguir_info(){
   let parts = path.split('/');
   let id = parts[parts.length - 1];
   pj = id;
-  console.log(id)
+  //console.log(id)
 
   fetch(`/infoPersonaje/${id}/info`)
   .then(data => data.json())
   .then(data =>{
-    console.log(data)
+    //console.log(data)
     let print = document.querySelector(".pj-row");
     let div = document.createElement("div");
     div.classList.add("pj-content");
@@ -97,7 +104,7 @@ function conseguir_info(){
       </div>
       `
     }
-    console.log(data)
+    //console.log(data)
     document.querySelector(".perso").classList.add(data.nombre_ele.toLowerCase())
     document.querySelector(".perso").innerHTML = `<img src="${data.poster_url}">`
     document.querySelector(".artefacto").innerHTML = `<img src="${data.icon_url}">`
@@ -111,44 +118,6 @@ function conseguir_info(){
 
   });
 }
-
-let op = document.querySelectorAll(".equip-img");
-
-op.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-    const id = e.currentTarget.id;
-    console.log("Click en imagen con ID:", id);
-
-    if (!document.querySelector('.popup-info')) {
-        document.body.insertAdjacentHTML('beforeend', `
-        <div class="popup-info">
-            <div class="info-content">
-                <h1 class="close-popup">X</h1>
-                <div class="info-pop">
-                  <div class="popup-row1">
-                    <div class="row-img">
-                    
-                    </div>
-                    <div class="row-info">
-                      
-                    </div>
-                  </div>
-                  <div class="popup-row2">
-                    <div class="popup-colum1">
-                    
-                    </div>
-                    <div class="popup-colum2">
-                    
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-        `);
-    }
-    });
-
-});
 
 function artefactos(){
   fetch('/artefacto')
@@ -233,25 +202,16 @@ document.querySelector(".voto-print").addEventListener("click", (e) => {
   voto = art.id;
 });
 
-document.querySelector('.btn-confirm-voto').addEventListener('click', () =>{
+document.querySelector('.btn-confirm-voto').addEventListener('click', (e) =>{
+  e.preventDefault(); // 🚨 evitar GET implícito
   let path = window.location.pathname;
   let parts = path.split('/');
   let id = parts[parts.length - 1];
   if(localStorage.getItem("session")){
-    switch(flag)
-    {
-      case "pj":
-        if(voto != null){
-          console.log(JSON.parse(localStorage.getItem("session")).id + " " + flag +" "+ voto)
-
-        }else{
-          alert("elige una opcion")
-        }
-        break
-      case "arma":
-        if(voto != null){
-          console.log(JSON.parse(localStorage.getItem("session")).id + " " + flag +" "+ voto+" "+ id)
-          fetch("/votoArma", {
+      switch(flag) {
+        case "arma":
+          if(voto != null){
+            fetch("/votoArma", {
               method: "POST",
               headers: {
                   "Content-Type": "application/json",
@@ -262,17 +222,18 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', () =>{
                   id_usuario: JSON.parse(localStorage.getItem("session")).id,
                   id_arma: voto,
                   id_personaje: id
-                }
-              )
-          });
-        }else{
-          alert("elige una opcion")
-        }
+              })
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
+          } else {
+            alert("elige una opcion")
+          }
         break;
-      case "artefacto":
-        if(voto != null){
-          console.log(JSON.parse(localStorage.getItem("session")).id + " " + flag +" "+ voto +" "+ id)
-          fetch("/votoSet", {
+        case "artefacto":
+          if(voto != null){
+            fetch("/votoSet", {
               method: "POST",
               headers: {
                   "Content-Type": "application/json",
@@ -283,24 +244,20 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', () =>{
                   id_usuario: JSON.parse(localStorage.getItem("session")).id,
                   id_art: voto,
                   id_personaje: id
-                }
-              )
-          });
-        }else{
-          alert("elige una opcion")
-        }
+              })
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err));
+          } else {
+            alert("elige una opcion")
+          }
         break;
-    }
-  }else{
+      }
+  } else {
     alert("inicia session")
   }
 })
-
-document.addEventListener('click', function (e) {
-  if (e.target.matches(".close-popup")) {
-    e.target.closest(".popup-info").remove();
-  }
-});
 
 document.querySelector(".btn-back").addEventListener("click", ()=>{
   window.location.href = "/catalogo"
@@ -346,28 +303,31 @@ function arma_recomendadas(){
   fetch(`/arma_recomendada/${id}`)
   .then(data => data.json())
   .then(data =>{
-    console.log(data)
-    data.forEach(art => {
-      document.getElementById('weapon').innerHTML = `
-      <p>Armas</p>
-      <div class="art-color">
-        <img src="${art.arma_url}">
-        <p>${art.nombre_arma}</p>
+    //console.log(data)
+    document.getElementById('weapon').innerHTML = `
+    <p>Armas</p>
+    <div class="art-color">
+      <img src="${data[0].arma_url}">
+      <p>${data[0].nombre_arma}</p>
+    </div>
+    <div class="option-content">
+      <div class="op-btn" id="btn-izq-wea">
+        <i class='bx bx-left-arrow-alt'></i>
       </div>
-      <div class="option-content">
-        <div class="op-btn" id="btn-izq-wea">
-          <i class='bx bx-left-arrow-alt'></i>
-        </div>
-        <div class="op-btn" id="btn-med-wea">
-          <i class='bx bxs-star'></i>
-        </div>
-        <div class="op-btn" id="btn-der-wea">
-          <i class='bx bx-right-arrow-alt'></i>
-        </div>
+      <div class="op-btn" id="btn-med-wea">
+        <i class='bx bxs-star'></i>
       </div>
-      `
-    })
+      <div class="op-btn" id="btn-der-wea">
+        <i class='bx bx-right-arrow-alt'></i>
+      </div>
+    </div>
+    `
+
+    arm_rec = data;
   })
+  .catch(error => {
+    console.error("Error:", error);
+  });
 }
 
 function artefactos_recomendados(){
@@ -377,28 +337,31 @@ function artefactos_recomendados(){
   fetch(`/artefacto_recomendado/${id}`)
   .then(data => data.json())
   .then(data =>{
-    console.log(data)
-    data.forEach(art => {
-      document.getElementById('artefact').innerHTML = `
-      <p>Sets recomendados</p>
-      <div class="art-color">
-        <img src="${art.art_url}">
-        <p>${art.nombre_set}</p>
+    //console.log(data)
+    document.getElementById('artefact').innerHTML = `
+    <p>Sets</p>
+    <div class="art-color">
+      <img src="${data[0].art_url}">
+      <p>${data[0].nombre_set}</p>
+    </div>
+    <div class="option-content">
+      <div class="op-btn" id="btn-izq-art">
+        <i class='bx bx-left-arrow-alt'></i>
       </div>
-      <div class="option-content">
-        <div class="op-btn" id="btn-izq-art">
-          <i class='bx bx-left-arrow-alt'></i>
-        </div>
-        <div class="op-btn" id="btn-med-art">
-          <i class='bx bxs-star'></i>
-        </div>
-        <div class="op-btn" id="btn-der-art">
-          <i class='bx bx-right-arrow-alt'></i>
-        </div>
+      <div class="op-btn" id="btn-med-art">
+        <i class='bx bxs-star'></i>
       </div>
-      `
-    })
+      <div class="op-btn" id="btn-der-art">
+        <i class='bx bx-right-arrow-alt'></i>
+      </div>
+    </div>
+    `
+
+    set_rec = data;
   })
+  .catch(error => {
+    console.error("Error:", error);
+  });
 }
 
 document.querySelector(".btn-comment").addEventListener("click", () =>{
@@ -409,7 +372,7 @@ document.querySelector(".btn-comment").addEventListener("click", () =>{
     }else{
       id_usuario = localStorage.getItem("session");
       id_usuario = JSON.parse(id_usuario).id;
-      console.log(id_usuario)
+      //console.log(id_usuario)
       comment ={
         autor: id_usuario,
         pj: pj,
@@ -419,7 +382,7 @@ document.querySelector(".btn-comment").addEventListener("click", () =>{
       newcomment(comment)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        //console.log(data)
         aux.value = ""
         conseguir_comentarios();
       });
@@ -454,5 +417,106 @@ function getDateTime() {
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
+
+
+function mostrarArma(index) {
+    const arma = arm_rec[index];
+    document.getElementById('weapon').innerHTML = `
+        <p>Armas</p>
+        <div class="art-color">
+          <img src="${arma.arma_url}">
+          <p>${arma.nombre_arma}</p>
+        </div>
+        <div class="option-content">
+          <div class="op-btn" id="btn-izq-wea">
+            <i class='bx bx-left-arrow-alt'></i>
+          </div>
+          <div class="op-btn" id="btn-med-wea">
+            <i class='bx bxs-star'></i>
+          </div>
+          <div class="op-btn" id="btn-der-wea">
+            <i class='bx bx-right-arrow-alt'></i>
+          </div>
+        </div>
+    `;
+}
+
+function mostrarSet(index) {
+    const arma = set_rec[index];
+    document.getElementById('artefact').innerHTML = `
+        <p>Sets</p>
+        <div class="art-color">
+          <img src="${arma.art_url}">
+          <p>${arma.nombre_set}</p>
+        </div>
+        <div class="option-content">
+          <div class="op-btn" id="btn-izq-art">
+            <i class='bx bx-left-arrow-alt'></i>
+          </div>
+          <div class="op-btn" id="btn-med-art">
+            <i class='bx bxs-star'></i>
+          </div>
+          <div class="op-btn" id="btn-der-art">
+            <i class='bx bx-right-arrow-alt'></i>
+          </div>
+        </div>
+    `;
+}
+
+document.getElementById("weapon").addEventListener("click", (e) => {
+    let btn = e.target.closest(".op-btn");
+    if(!btn) return;
+
+    switch(btn.id){
+        case "btn-izq-wea":
+            if(arm_i > 0) {
+                arm_i--;
+                mostrarArma(arm_i);
+            } else {
+                console.log("No hay más elementos a la izquierda");
+            }
+            break;
+        case "btn-med-wea":
+            arm_i = 0; // siempre el primero
+            mostrarArma(arm_i);
+            break;
+        case "btn-der-wea":
+            if(arm_i < arm_rec.length - 1) {
+                arm_i++;
+                mostrarArma(arm_i);
+            } else {
+                console.log("No hay más elementos a la derecha");
+            }
+            break;
+    }
+});
+
+document.getElementById("artefact").addEventListener("click", (e) => {
+    let btn = e.target.closest(".op-btn");
+    if(!btn) return;
+
+    switch(btn.id){
+        case "btn-izq-art":
+            if(set_i > 0) {
+                set_i--;
+                mostrarSet(set_i);
+            } else {
+                console.log("No hay más elementos a la izquierda");
+            }
+            break;
+        case "btn-med-art":
+            set_i = 0; // siempre el primero
+            mostrarSet(set_i);
+            break;
+        case "btn-der-art":
+            if(set_i < set_rec.length - 1) {
+                set_i++;
+                mostrarSet(set_i);
+            } else {
+                console.log("No hay más elementos a la derecha");
+            }
+            break;
+    }
+});
 
 
