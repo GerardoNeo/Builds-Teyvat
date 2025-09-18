@@ -3,7 +3,14 @@ let arte;
 let arma;
 let voto = null;
 let flag = "pj"
-document.addEventListener("DOMContentLoaded", conseguir_info(), conseguir_comentarios(), artefactos())
+document.addEventListener("DOMContentLoaded", ()=>{
+  conseguir_info();
+  conseguir_comentarios();
+  arma_recomendadas();
+  artefactos_recomendados();
+  artefactos();
+})
+  
 
 function conseguir_comentarios(){
   //localStorage.removeItem("session")
@@ -235,14 +242,15 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', () =>{
     {
       case "pj":
         if(voto != null){
-          console.log(flag + voto)
+          console.log(JSON.parse(localStorage.getItem("session")).id + " " + flag +" "+ voto)
+
         }else{
           alert("elige una opcion")
         }
         break
       case "arma":
         if(voto != null){
-          console.log(JSON.parse(localStorage.getItem("session")).id)
+          console.log(JSON.parse(localStorage.getItem("session")).id + " " + flag +" "+ voto+" "+ id)
           fetch("/votoArma", {
               method: "POST",
               headers: {
@@ -257,14 +265,27 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', () =>{
                 }
               )
           });
-          console.log(flag + voto)
         }else{
           alert("elige una opcion")
         }
         break;
       case "artefacto":
         if(voto != null){
-          console.log(flag + voto)
+          console.log(JSON.parse(localStorage.getItem("session")).id + " " + flag +" "+ voto +" "+ id)
+          fetch("/votoSet", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+              },
+              body: JSON.stringify({
+                  id_usuario: JSON.parse(localStorage.getItem("session")).id,
+                  id_art: voto,
+                  id_personaje: id
+                }
+              )
+          });
         }else{
           alert("elige una opcion")
         }
@@ -318,8 +339,6 @@ document.querySelector(".close-btn").addEventListener("click", () =>{
   document.querySelector(".pop-up-info").style.display = "none"
 });
 
-document.addEventListener("DOMContentLoaded", arma_recomendadas());
-
 function arma_recomendadas(){
   let path = window.location.pathname;
   let parts = path.split('/');
@@ -352,9 +371,13 @@ function arma_recomendadas(){
 }
 
 function artefactos_recomendados(){
-  fetch('/artefacto')
+  let path = window.location.pathname;
+  let parts = path.split('/');
+  let id = parts[parts.length - 1];
+  fetch(`/artefacto_recomendado/${id}`)
   .then(data => data.json())
   .then(data =>{
+    console.log(data)
     data.forEach(art => {
       document.getElementById('artefact').innerHTML = `
       <p>Sets recomendados</p>
@@ -370,24 +393,6 @@ function artefactos_recomendados(){
           <i class='bx bxs-star'></i>
         </div>
         <div class="op-btn" id="btn-der-art">
-          <i class='bx bx-right-arrow-alt'></i>
-        </div>
-      </div>
-      `
-      document.getElementById('weapon').innerHTML = `
-      <p>Sets recomendados</p>
-      <div class="art-color">
-        <img src="${art.art_url}">
-        <p>${art.nombre_set}</p>
-      </div>
-      <div class="option-content">
-        <div class="op-btn" id="btn-izq-wea">
-          <i class='bx bx-left-arrow-alt'></i>
-        </div>
-        <div class="op-btn" id="btn-med-wea">
-          <i class='bx bxs-star'></i>
-        </div>
-        <div class="op-btn" id="btn-der-wea">
           <i class='bx bx-right-arrow-alt'></i>
         </div>
       </div>

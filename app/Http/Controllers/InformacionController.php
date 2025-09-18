@@ -74,15 +74,44 @@ class InformacionController extends Controller
         }
     }
 
+    function recomendar_set(Request $request){
+        $ok = DB::table('voto_set')->insert([
+            'id_usuario'    => $request->id_usuario,
+            'id_art'       => $request->id_art,
+            'id_personaje'  => $request->id_personaje
+        ]);
+
+        if(!$ok){
+            return response()->json(['error' => 'No se puedo hacer la recomendacion'], 400);
+        }else{
+            return response()->json(['status' => true]);
+        }
+    }
+                
     function arma_list($id){
         $result = DB::table('voto_arma as a')
             ->join('arma as b', 'a.id_arma', '=', 'b.id_arma')
             ->where('a.id_personaje', $id)
-            ->select('a.*', 'b.*') // puedes ajustar los campos que necesites
+            ->select('a.*', 'b.*')
             ->get();
 
         if(!$result){
             return response()->json(['error' => 'No hay armas recomendadas'], 400);
+        }else{
+            return response()->json($result);
+        }
+    }
+
+    function set_list($id){
+        $result = DB::table('voto_set as a')
+            ->join('artefacto as b', 'a.id_art', '=', 'b.id_art')
+            ->where('a.id_personaje', $id)
+            ->select('a.*', 'b.*')
+            ->get();
+
+
+        if(!$result){
+            return response()->json(['error' => 'No hay sets recomendadas'], 400);
         }else{
             return response()->json($result);
         }
