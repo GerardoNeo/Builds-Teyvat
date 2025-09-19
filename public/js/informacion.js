@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded",
   arma_recomendadas(),
   artefactos_recomendados(),
   artefactos(),
+  estado()
 )
   
 document.querySelector("header p").addEventListener("click", () =>{
@@ -225,7 +226,9 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', (e) =>{
               })
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+              arma_recomendadas();
+            })
             .catch(err => console.error(err));
           } else {
             alert("elige una opcion")
@@ -247,15 +250,21 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', (e) =>{
               })
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data =>{
+              console.log(data)
+              artefactos_recomendados();
+            })
             .catch(err => console.error(err));
           } else {
             alert("elige una opcion")
           }
         break;
       }
+      let pop = document.querySelector(".pop-up-voto");
+      pop.style.display = "none"
   } else {
-    alert("inicia session")
+    //alert("inicia session")
+    document.querySelector(".pop-up-login").style.display = "flex"
   }
 })
 
@@ -296,6 +305,10 @@ document.querySelector(".close-btn").addEventListener("click", () =>{
   document.querySelector(".pop-up-info").style.display = "none"
 });
 
+document.querySelector(".btn-login-close").addEventListener("click", () =>{
+  document.querySelector(".pop-up-login").style.display = "none"
+});
+
 function arma_recomendadas(){
   let path = window.location.pathname;
   let parts = path.split('/');
@@ -304,24 +317,45 @@ function arma_recomendadas(){
   .then(data => data.json())
   .then(data =>{
     //console.log(data)
-    document.getElementById('weapon').innerHTML = `
-    <p>Armas</p>
-    <div class="art-color">
-      <img src="${data[0].arma_url}">
-      <p>${data[0].nombre_arma}</p>
-    </div>
-    <div class="option-content">
-      <div class="op-btn" id="btn-izq-wea">
-        <i class='bx bx-left-arrow-alt'></i>
+    if(data[0].num_est == 5){
+      document.getElementById('weapon').innerHTML = `
+      <p>Armas</p>
+      <div class="art-color-cinco">
+        <img src="${data[0].arma_url}">
+        <p>${data[0].nombre_arma}</p>
       </div>
-      <div class="op-btn" id="btn-med-wea">
-        <i class='bx bxs-star'></i>
+      <div class="option-content">
+        <div class="op-btn" id="btn-izq-wea">
+          <i class='bx bx-left-arrow-alt'></i>
+        </div>
+        <div class="op-btn" id="btn-med-wea">
+          <i class='bx bxs-star'></i>
+        </div>
+        <div class="op-btn" id="btn-der-wea">
+          <i class='bx bx-right-arrow-alt'></i>
+        </div>
       </div>
-      <div class="op-btn" id="btn-der-wea">
-        <i class='bx bx-right-arrow-alt'></i>
+      `
+    }else{
+      document.getElementById('weapon').innerHTML = `
+      <p>Armas</p>
+      <div class="art-color-cuatro">
+        <img src="${data[0].arma_url}">
+        <p>${data[0].nombre_arma}</p>
       </div>
-    </div>
-    `
+      <div class="option-content">
+        <div class="op-btn" id="btn-izq-wea">
+          <i class='bx bx-left-arrow-alt'></i>
+        </div>
+        <div class="op-btn" id="btn-med-wea">
+          <i class='bx bxs-star'></i>
+        </div>
+        <div class="op-btn" id="btn-der-wea">
+          <i class='bx bx-right-arrow-alt'></i>
+        </div>
+      </div>
+      `
+    }
 
     arm_rec = data;
   })
@@ -340,7 +374,7 @@ function artefactos_recomendados(){
     //console.log(data)
     document.getElementById('artefact').innerHTML = `
     <p>Sets</p>
-    <div class="art-color">
+    <div class="art-color-cinco">
       <img src="${data[0].art_url}">
       <p>${data[0].nombre_set}</p>
     </div>
@@ -388,7 +422,8 @@ document.querySelector(".btn-comment").addEventListener("click", () =>{
       });
     }
   }else{
-    alert("Inisia sesion")
+    //alert("Inisia sesion")
+    document.querySelector(".pop-up-login").style.display = "flex"
   }
 })
 
@@ -421,9 +456,10 @@ function getDateTime() {
 
 function mostrarArma(index) {
     const arma = arm_rec[index];
-    document.getElementById('weapon').innerHTML = `
+    if(arma.num_est == 5){
+      document.getElementById('weapon').innerHTML = `
         <p>Armas</p>
-        <div class="art-color">
+        <div class="art-color-cinco">
           <img src="${arma.arma_url}">
           <p>${arma.nombre_arma}</p>
         </div>
@@ -438,14 +474,34 @@ function mostrarArma(index) {
             <i class='bx bx-right-arrow-alt'></i>
           </div>
         </div>
-    `;
+        `;
+    }else{
+      document.getElementById('weapon').innerHTML = `
+        <p>Armas</p>
+        <div class="art-color-cuatro">
+          <img src="${arma.arma_url}">
+          <p>${arma.nombre_arma}</p>
+        </div>
+        <div class="option-content">
+          <div class="op-btn" id="btn-izq-wea">
+            <i class='bx bx-left-arrow-alt'></i>
+          </div>
+          <div class="op-btn" id="btn-med-wea">
+            <i class='bx bxs-star'></i>
+          </div>
+          <div class="op-btn" id="btn-der-wea">
+            <i class='bx bx-right-arrow-alt'></i>
+          </div>
+        </div>
+        `;
+    }
 }
 
 function mostrarSet(index) {
     const arma = set_rec[index];
     document.getElementById('artefact').innerHTML = `
         <p>Sets</p>
-        <div class="art-color">
+        <div class="art-color-cinco">
           <img src="${arma.art_url}">
           <p>${arma.nombre_set}</p>
         </div>
@@ -519,4 +575,100 @@ document.getElementById("artefact").addEventListener("click", (e) => {
     }
 });
 
+document.querySelector(".btn-pop-login").addEventListener("click", () => {
+    inf = {
+        name: document.getElementById("pop-correo").value,
+        pass: document.getElementById("pop-contra").value
+    }
+    console.log(inf)
 
+    if(inf.name != "" && inf.pass != ""){
+        let exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(exp.test(inf.name)){
+            acceder(inf)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if(data.state === true){
+                    localStorage.setItem("session", JSON.stringify(data.user));
+                    document.querySelector(".pop-up-login").style.display = "none"
+                    estado()
+                }
+            });
+        }else{
+            acceder(inf)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if(data.state === true){
+                    localStorage.setItem("session", JSON.stringify(data.user));
+                    document.querySelector(".pop-up-login").style.display = "none"
+                    estado()
+                }
+            });
+        }
+    }else{
+        alert("todos los inputs deben ser rellenados");
+    }
+})
+
+function acceder(data){
+    return fetch("/login/in", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(data)
+    });
+}
+
+function estado(){
+    let data = localStorage.getItem("session");
+    if (data) {
+        document.getElementById("ver-perfil").style.display = "flex"
+        document.getElementById("cerrar-session").style.display = "flex"
+        document.getElementById("iniciar-session").style.display = "none"
+    } else {
+        document.getElementById("ver-perfil").style.display = "none"
+        document.getElementById("cerrar-session").style.display = "none"
+        document.getElementById("iniciar-session").style.display = "flex"
+    }
+}
+
+
+document.querySelector(".login").addEventListener("click", () =>{
+    document.querySelector(".pop-up-perfil").style.display = "flex";
+});
+
+document.querySelector(".perfil-close").addEventListener("click", () =>{
+    document.querySelector(".pop-up-perfil").style.display = "none";
+});
+
+document.getElementById("iniciar-session").addEventListener("click", () =>{
+    document.querySelector(".pop-up-perfil").style.display = "none";
+    document.querySelector(".pop-up-login").style.display = "flex"
+});
+
+document.getElementById("cerrar-session").addEventListener("click", () =>{
+    let data = localStorage.getItem("session");
+    if (data) {
+        localStorage.removeItem("session")
+        document.querySelector(".pop-up-perfil").style.display = "none";
+        estado()
+    } else {
+        console.log("No hay sesión activa");
+    }
+});
+
+document.getElementById("ver-perfil").addEventListener("click", () =>{
+    let data = localStorage.getItem("session");
+    console.log(JSON.parse(data).id)
+    if(data){
+        document.querySelector(".pop-up-perfil").style.display = "none";
+        window.location.href = `/perfil/${JSON.parse(data).id}`;
+    }else{
+        console.log("No hay sesión activa");
+    }
+});

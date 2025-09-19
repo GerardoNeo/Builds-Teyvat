@@ -3,16 +3,20 @@ let listArma = [];
 let element = ['Anemo', 'Geo', 'Electro', 'Dendro', 'Hydro', 'Pyro', 'Cryo']
 let weapon = ['Espada ligera', 'Arco', 'Lanza', 'Mandoble', 'Catalizador']
 
-document.addEventListener("DOMContentLoaded", () =>{
+document.addEventListener("DOMContentLoaded", estado())
+
+function estado(){
     let data = localStorage.getItem("session");
-    //localStorage.removeItem("session")
     if (data) {
-        //data = JSON.parse(data);
-        console.log("Usuario en sesión:", data);
+        document.getElementById("ver-perfil").style.display = "flex"
+        document.getElementById("cerrar-session").style.display = "flex"
+        document.getElementById("iniciar-session").style.display = "none"
     } else {
-        console.log("No hay sesión activa");
+        document.getElementById("ver-perfil").style.display = "none"
+        document.getElementById("cerrar-session").style.display = "none"
+        document.getElementById("iniciar-session").style.display = "flex"
     }
-})
+}
 
 document.querySelectorAll(".item").forEach(item =>{
     item.addEventListener("click", () => {
@@ -125,4 +129,92 @@ document.querySelector(".list-pj").addEventListener("click", (e) => {
     if (e.target.closest(".pj")) {
         window.location.href = `/infoPersonaje/${id}`;
     }
+});
+
+document.querySelector(".login").addEventListener("click", () =>{
+    document.querySelector(".pop-up-perfil").style.display = "flex";
+});
+
+document.querySelector(".perfil-close").addEventListener("click", () =>{
+    document.querySelector(".pop-up-perfil").style.display = "none";
+});
+
+document.getElementById("iniciar-session").addEventListener("click", () =>{
+    document.querySelector(".pop-up-perfil").style.display = "none";
+    document.querySelector(".pop-up-login").style.display = "flex"
+});
+
+document.getElementById("cerrar-session").addEventListener("click", () =>{
+    let data = localStorage.getItem("session");
+    if (data) {
+        localStorage.removeItem("session")
+        document.querySelector(".pop-up-perfil").style.display = "none";
+        estado()
+    } else {
+        console.log("No hay sesión activa");
+    }
+});
+
+document.getElementById("ver-perfil").addEventListener("click", () =>{
+    let data = localStorage.getItem("session");
+    console.log(JSON.parse(data).id)
+    if(data){
+        document.querySelector(".pop-up-perfil").style.display = "none";
+        window.location.href = `/perfil/${JSON.parse(data).id}`;
+    }else{
+        console.log("No hay sesión activa");
+    }
+});
+
+document.querySelector(".btn-pop-login").addEventListener("click", () => {
+    inf = {
+        name: document.getElementById("pop-correo").value,
+        pass: document.getElementById("pop-contra").value
+    }
+    console.log(inf)
+
+    if(inf.name != "" && inf.pass != ""){
+        let exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(exp.test(inf.name)){
+            acceder(inf)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if(data.state === true){
+                    localStorage.setItem("session", JSON.stringify(data.user));
+                    document.querySelector(".pop-up-login").style.display = "none"
+                    estado()
+                }
+            });
+        }else{
+            acceder(inf)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if(data.state === true){
+                    localStorage.setItem("session", JSON.stringify(data.user));
+                    document.querySelector(".pop-up-login").style.display = "none"
+                    estado()
+                }
+            });
+        }
+    }else{
+        alert("todos los inputs deben ser rellenados");
+    }
+})
+
+function acceder(data){
+    return fetch("/login/in", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify(data)
+    });
+}
+
+document.querySelector(".btn-login-close").addEventListener("click", () =>{
+  document.querySelector(".pop-up-login").style.display = "none"
 });

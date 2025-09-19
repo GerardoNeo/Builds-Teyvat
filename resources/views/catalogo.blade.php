@@ -11,7 +11,11 @@
 </head>
 <body>
     <header>
+        <div></div>
         <p>Builts Teyvat</p>
+        <div class="login">
+            <i class='bx bx-user'></i>
+        </div>
     </header>
     <div class="content">
         <div class="column-content">
@@ -84,6 +88,54 @@
                             
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop-up-perfil">
+        <div class="pop-perfil-content">
+            <div class="pop-perfil-content-all">
+                <div class="perfil-close">
+                    <p>X</p>
+                </div>
+                <div class="pop-icon-content">
+                    <i class='bx bx-user'></i>
+                </div>
+                <div class="pop-btn-op-content">
+                    <div class="pop-btn-op" id="ver-perfil">
+                        <p>Ver perfil</p>
+                    </div>
+                    <div class="pop-btn-op" id="cerrar-session">
+                        <p>Cerrar session</p>
+                    </div>
+                    <div class="pop-btn-op" id="iniciar-session">
+                        <p>Iniciar session</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pop-up-login">
+        <div class="pop-up-login-content">
+            <div class="btn-login-close">
+                <p>X</p>
+            </div>
+            <div class="login-content-all">
+                <div class="circle-login">
+                    <i class='bx bx-user'></i>
+                </div>
+                <div class="input-row-pop">
+                    <p>Usuario o correo</p>
+                    <input type="text" id="pop-correo">
+                </div>
+                <div class="input-row-pop">
+                    <p>Contraseña</p>
+                    <input type="text" id="pop-contra">
+                </div>
+                <div class="btn-pop-login">
+                    <p>Iniciar session</p>
                 </div>
             </div>
         </div>

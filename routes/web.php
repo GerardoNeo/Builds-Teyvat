@@ -12,6 +12,7 @@ Route::get('/', function () {
 
 //vistas
 Route::get('/infoPersonaje/{id}', [ViewsController::class, 'infoPag']);
+Route::get('/perfil/{id}', [ViewsController::class, 'perfil']);
 Route::get('/catalogo', [ViewsController::class, 'catalogo']);
 
 //Catalogo

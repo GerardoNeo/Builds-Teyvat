@@ -634,7 +634,7 @@ body{
   background: #616161;
 }
 
-.art-color{
+.art-color-cinco{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -647,14 +647,27 @@ body{
     cursor: pointer;
 }
 
-.art-color img{
+.art-color-cuatro{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    aspect-ratio: 1/1;
+    background-color: rgba(var(--cuatro_est), .7);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.art-color-cinco img, .art-color-cuatro img{
     max-width: 70%;
     max-height: 70%;
     height: auto;
     width: auto;
 }
 
-.art-color p{
+.art-color-cinco p, .art-color-cuatro p{
     text-align: center;
     margin: 0;
     font-size: 75%;
