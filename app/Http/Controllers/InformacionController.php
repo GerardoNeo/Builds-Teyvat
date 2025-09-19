@@ -53,7 +53,6 @@ class InformacionController extends Controller
     function comments($id){
         $comentarios = DB::table('comentario as a')
             ->join('usuario as b', 'a.id_usuario', '=', 'b.id_usuario')
-            ->select('b.nombre_usuario', 'a.texto', 'a.fecha', 'b.foto_url')
             ->where('a.id_personaje', $id)
             ->get();
 
@@ -102,6 +101,28 @@ class InformacionController extends Controller
             return response()->json([
                 'status' => false, 
                 'message' => 'Ya votaste por esta set en este personaje'
+            ], 400);
+        }
+    }
+
+    function recomendar_pj(Request $request){
+        $ok = DB::table('voto_personaje')
+            ->where('id_personaje', $request->id_personaje)
+            ->where('id_usuario', $request->id_usuario)
+            ->exists();
+
+        if(!$ok){
+            $result = DB::table('voto_personaje')->insert([
+            'id_usuario'    => $request->id_usuario,
+            'id_personaje'  => $request->id_personaje,
+            'voto'          => $request->voto
+            ]);
+
+            return response()->json(['status' => true]);
+        }else{
+            return response()->json([
+                'status' => false, 
+                'message' => 'Ya votaste por este personaje'
             ], 400);
         }
     }

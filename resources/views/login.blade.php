@@ -13,9 +13,7 @@
     <header>
         <div></div>
         <p>Builts Teyvat</p>
-        <div class="login">
-            <i class='bx bx-user'></i>
-        </div>
+        <div></div>
     </header>
     <div class="content">
         <div class="login-content-registrar">

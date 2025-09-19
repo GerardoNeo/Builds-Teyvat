@@ -3,7 +3,11 @@ let listArma = [];
 let element = ['Anemo', 'Geo', 'Electro', 'Dendro', 'Hydro', 'Pyro', 'Cryo']
 let weapon = ['Espada ligera', 'Arco', 'Lanza', 'Mandoble', 'Catalizador']
 
-document.addEventListener("DOMContentLoaded", estado())
+document.addEventListener("DOMContentLoaded", estado(), last())
+
+function last(){
+    localStorage.setItem("last", "/catalogo");
+}
 
 function estado(){
     let data = localStorage.getItem("session");
@@ -218,3 +222,7 @@ function acceder(data){
 document.querySelector(".btn-login-close").addEventListener("click", () =>{
   document.querySelector(".pop-up-login").style.display = "none"
 });
+
+document.getElementById("create-log").addEventListener("click", ()=>{
+  window.location.href = "/"
+})

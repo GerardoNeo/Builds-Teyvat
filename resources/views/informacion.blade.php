@@ -149,9 +149,17 @@
 
                     <div class="voto-column3">
                         <div class="column3-voto-content">
-
-                        </div>
-                        <div class="btn-confirm-voto">
+                            <img src="">
+                            <div class="votos">
+                                <span class="estrella" data-value="1">★</span>
+                                <span class="estrella" data-value="2">★</span>
+                                <span class="estrella" data-value="3">★</span>
+                                <span class="estrella" data-value="4">★</span>
+                                <span class="estrella" data-value="5">★</span>
+                                </div>
+                                <p>Tu voto: <span id="voto-seleccionado">0</span></p>
+                            </div>
+                        <div class="btn-confirm-voto" id="btn-pj-voto">
                             <p>Votar</p>
                         </div>
                     </div>
@@ -177,8 +185,11 @@
                     <p>Contraseña</p>
                     <input type="text" id="pop-contra">
                 </div>
-                <div class="btn-pop-login">
-                    <p>Iniciar session</p>
+                <div class="content-create">
+                    <div class="btn-pop-login">
+                        <p>Iniciar session</p>
+                    </div>
+                    <p id="create-log">Crear cuenta</p>
                 </div>
             </div>
         </div>

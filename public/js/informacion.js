@@ -13,8 +13,17 @@ document.addEventListener("DOMContentLoaded",
   arma_recomendadas(),
   artefactos_recomendados(),
   artefactos(),
-  estado()
+  estado(),
+  last()
 )
+
+function last(){
+  let path = window.location.pathname;
+  let parts = path.split('/');
+  let id = parts[parts.length - 1];
+  let aux = "/infoPersonaje/" + id
+  localStorage.setItem("last", aux)
+}
   
 document.querySelector("header p").addEventListener("click", () =>{
   localStorage.removeItem("session")
@@ -29,7 +38,7 @@ function conseguir_comentarios(){
   fetch(`/comments/${id}`)
   .then(data => data.json())
   .then(data =>{
-    //console.log(data)
+    console.log(data)
     data.forEach(comment =>{
       let div = document.createElement("div");
       div.classList.add("comment");
@@ -39,7 +48,7 @@ function conseguir_comentarios(){
       </div>
       <div class="text-comment">
         <div class="name-comment">
-          <p>${comment.nombre_usuario}</p>
+          <a href="/perfil/${comment.id_usuario}">${comment.nombre_usuario}</a>
           <div class="line"></div>
         </div>
         <div class="content-comment">
@@ -109,7 +118,7 @@ function conseguir_info(){
     document.querySelector(".perso").classList.add(data.nombre_ele.toLowerCase())
     document.querySelector(".perso").innerHTML = `<img src="${data.poster_url}">`
     document.querySelector(".artefacto").innerHTML = `<img src="${data.icon_url}">`
-    document.querySelector(".column3-voto-content").innerHTML =`<img src= "${data.poster_url}">`
+    document.querySelector(".column3-voto-content img").src = data.poster_url;
 
     print.appendChild(div)
 
@@ -233,7 +242,7 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', (e) =>{
           } else {
             alert("elige una opcion")
           }
-        break;
+          break;
         case "artefacto":
           if(voto != null){
             fetch("/votoSet", {
@@ -258,7 +267,7 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', (e) =>{
           } else {
             alert("elige una opcion")
           }
-        break;
+          break;
       }
       let pop = document.querySelector(".pop-up-voto");
       pop.style.display = "none"
@@ -266,6 +275,33 @@ document.querySelector('.btn-confirm-voto').addEventListener('click', (e) =>{
     //alert("inicia session")
     document.querySelector(".pop-up-login").style.display = "flex"
   }
+})
+
+document.getElementById("btn-pj-voto").addEventListener("click", () =>{
+  let path = window.location.pathname;
+  let parts = path.split('/');
+  let id = parts[parts.length - 1];
+  voto = voto + 1;
+  fetch("/votoPersonaje", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+    },
+    body: JSON.stringify({
+      id_usuario: JSON.parse(localStorage.getItem("session")).id,
+      voto: voto,
+      id_personaje: id
+    })
+  })
+  .then(res => res.json())
+  .then(data =>{
+    console.log(data)
+    alert(data.message)
+    artefactos_recomendados();
+  })
+  .catch(err => console.error(err));
 })
 
 document.querySelector(".btn-back").addEventListener("click", ()=>{
@@ -671,4 +707,25 @@ document.getElementById("ver-perfil").addEventListener("click", () =>{
     }else{
         console.log("No hay sesión activa");
     }
+});
+
+document.getElementById("create-log").addEventListener("click", ()=>{
+  window.location.href = "/"
+})
+
+const estrellas = document.querySelectorAll('.estrella');
+const votoSeleccionado = document.getElementById('voto-seleccionado');
+
+estrellas.forEach(estrella => {
+  estrella.addEventListener('click', () => {
+    const valor = estrella.getAttribute('data-value');
+    votoSeleccionado.textContent = valor;
+
+    // Pinta todas las estrellas hasta la seleccionada
+    estrellas.forEach(s => s.classList.remove('seleccionada'));
+    for (let i = 0; i < valor; i++) {
+      estrellas[i].classList.add('seleccionada');
+      voto = i
+    }
+  });
 });

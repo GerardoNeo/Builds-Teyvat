@@ -134,8 +134,11 @@
                     <p>Contraseña</p>
                     <input type="text" id="pop-contra">
                 </div>
-                <div class="btn-pop-login">
-                    <p>Iniciar session</p>
+                <div class="content-create">
+                    <div class="btn-pop-login">
+                        <p>Iniciar session</p>
+                    </div>
+                    <p id="create-log">Crear cuenta</p>
                 </div>
             </div>
         </div>
