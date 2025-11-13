@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class InformacionController extends Controller
 {
+    function promedio($id){
+        $promedio = DB::table('voto_personaje')
+            ->where('id_personaje', $id) // reemplaza 1 por el id que necesites
+            ->avg('voto');
+
+        return response()->json($promedio);
+    }
+
     function infoPj($id)
     {
         $info = DB::table('info_personaje')

@@ -96,11 +96,11 @@ body{
 }
 
 .item:hover{
-    background-color: rgba(var(--color_gris_oscuro), .35);
+    background-color: rgba(var(--dendro), .50);
 }
 
 .activo{
-    background-color: rgba(var(--color_gris_oscuro), .35);
+    background-color: rgba(var(--dendro), .50);
 }
 
 /*.item.activo:hover{
@@ -290,5 +290,26 @@ img{
     background-color: rgb(var(--cryo));
 }
 
+.error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.error-load{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: 15%;
+    border-radius: 20px;
+    background-color: rgba(255, 0, 0, 0.5);
+    border: 1px red solid;
+}
 
+.error-load p{
+    text-align: center;
+    margin: 0;
+    color: rgb(var(--blanco_letra), 0.7);
+    font-size: 120%;
+}

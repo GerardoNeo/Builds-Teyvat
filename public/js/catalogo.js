@@ -2,6 +2,7 @@ let listFil = [];
 let listArma = [];
 let element = ['Anemo', 'Geo', 'Electro', 'Dendro', 'Hydro', 'Pyro', 'Cryo']
 let weapon = ['Espada ligera', 'Arco', 'Lanza', 'Mandoble', 'Catalizador']
+let error = false
 
 document.addEventListener("DOMContentLoaded", estado(), last())
 
@@ -60,7 +61,9 @@ document.querySelectorAll(".item").forEach(item =>{
     })
 });
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", cargarCatalogo())
+
+function cargarCatalogo(){
     let print = document.querySelector(".list-pj");
     fetch("/catalogo/list")
     .then(data => data.json())
@@ -104,10 +107,34 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 `;
             }
             
+            error = false;
             print.appendChild(div);
         })
     })
-})
+    .catch(err => {
+            print.classList.add("error");
+            print.innerHTML = `
+            <div class="error-load">
+                <p>Error al cargar los personajes</p>
+                </br> 
+                <p>0</p>
+            <div>`;
+            error = true;
+            if(error == true){
+                for (i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        print.innerHTML = `
+                        <div class="error-load">
+                            <p>Error al cargar los personajes</p>
+                            </br> 
+                            <p>${i}</p>
+                        <div>`;
+                    }, 1000);
+                }
+            }
+        }
+    );
+}
 
 let search = document.querySelector(".search");
 

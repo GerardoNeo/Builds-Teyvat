@@ -26,6 +26,7 @@ Route::get('/artefacto_recomendado/{id}', [InformacionController::class, 'set_li
 Route::get('/arma_recomendada/{id}', [InformacionController::class, 'arma_list']);
 Route::get('/arma/{id}', [InformacionController::class, 'arma_recomend']);
 Route::get('/artefacto', [InformacionController::class, 'set_recomend']);
+Route::get('/promedio/{id}', [InformacionController::class, 'promedio']);
 Route::get('/comments/{id}', [InformacionController::class, 'comments']);
 Route::post('/newComment', [InformacionController::class, 'new_comment']);
 Route::post('/votoArma', [InformacionController::class, 'recomendar_arma']);

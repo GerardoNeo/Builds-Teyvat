@@ -91,7 +91,7 @@ function conseguir_info(){
         <img src="${data.banner_url}">
       </div>
       <div class="pj-content-row2">
-        <p>Puntuacion de la comunidad: 45</p>
+        <p id="promedio">Puntuacion de la comunidad: 45</p>
       </div>
       `
     }else{
@@ -110,10 +110,16 @@ function conseguir_info(){
         <img src="${data.banner_url}">
       </div>
       <div class="pj-content-row2">
-        <span></span>
+        <p id="promedio">Puntuacion de la comunidad: 45</p>
       </div>
       `
     }
+    fetch(`/promedio/${id}`)
+    .then(dat => dat.json())
+    .then(dat =>{
+      console.log(dat)
+    });
+
     //console.log(data)
     document.querySelector(".perso").classList.add(data.nombre_ele.toLowerCase())
     document.querySelector(".perso").innerHTML = `<img src="${data.poster_url}">`
